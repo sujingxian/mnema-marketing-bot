@@ -1,5 +1,5 @@
 {
- "next_index": 1,
+ "next_index": 2,
  "history": [
   {
    "index": 0,
@@ -41,6 +41,30 @@
    ],
    "planned_due": "2026-11-03T00:30:00+00:00",
    "note": "shared now from Buffer by user on 2026-11-02 (Hobart)"
+  },
+  {
+   "index": 1,
+   "slug": "emotion-33-rumination",
+   "file": "2026-11-02-emotion-33-rumination.mp4",
+   "due": "2026-11-03T00:30:00+00:00",
+   "scheduled_at": "2026-11-02T02:44:58.749752+00:00",
+   "results": [
+    {
+     "service": "youtube",
+     "ok": true,
+     "post_id": "6ae7f974c181038f3ba463f1"
+    },
+    {
+     "service": "tiktok",
+     "ok": true,
+     "post_id": "6ae7f97405377798e050f28e"
+    },
+    {
+     "service": "instagram",
+     "ok": true,
+     "post_id": "6ae7f97512761be1a8f85541"
+    }
+   ]
   }
  ]
 }
