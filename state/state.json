@@ -1,0 +1,29 @@
+{
+ "next_index": 1,
+ "history": [
+  {
+   "index": 0,
+   "slug": "emotion-41-powerlessness",
+   "file": "2026-11-02-emotion-41-powerlessness.mp4",
+   "due": "2026-11-03T00:30:00+00:00",
+   "scheduled_at": "2026-11-02T02:05:03.916558+00:00",
+   "results": [
+    {
+     "service": "youtube",
+     "ok": true,
+     "post_id": "6ae7efded016796999025748"
+    },
+    {
+     "service": "tiktok",
+     "ok": true,
+     "post_id": "6ae7efdfd016796999025792"
+    },
+    {
+     "service": "instagram",
+     "ok": true,
+     "post_id": "6ae7efdf2da2578c1894e585"
+    }
+   ]
+  }
+ ]
+}
