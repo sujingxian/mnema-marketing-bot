@@ -18,7 +18,7 @@ import urllib.request
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-from . import plan, emotion, feature, buffer
+from . import plan, emotion, emotion_v2, feature, buffer
 
 ROOT = Path(__file__).resolve().parent.parent
 STATE = ROOT / "state" / "state.json"
@@ -61,7 +61,7 @@ def next_post_time(now_utc: dt.datetime, history: list | None = None) -> dt.date
 def render(entry: dict, out: Path, idx: int) -> Path:
     audio = AUDIO[idx % len(AUDIO)]
     if entry["kind"] == "emotion":
-        return emotion.build(emotion.parse_series()[entry["key"]], out, audio)
+        return emotion_v2.build(emotion.parse_series()[entry["key"]], out, audio)
     if entry["key"] == "same-thing":
         shutil.copy(ROOT / "content" / "prerendered" / "same-thing.mp4", out)
         return out

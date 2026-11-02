@@ -14,6 +14,7 @@ from .gfx import W, H, ease, prog, paste_fade, text_block, fit_text, play, inter
 
 ROOT = Path(__file__).resolve().parent.parent
 SERIES = ROOT / "content" / "EMOTION_SERIES_EN.md"
+GENERATED = ROOT / "content" / "generated"   # weekly AI-written batches, same format
 
 # Never auto-post these: they need a helpline card / special treatment (see series notes).
 EXCLUDE = {43, 45}
@@ -21,6 +22,9 @@ EXCLUDE = {43, 45}
 
 def parse_series(path: Path = SERIES) -> dict[int, dict]:
     text = path.read_text(encoding="utf-8")
+    if path == SERIES and GENERATED.exists():
+        for g in sorted(GENERATED.glob("*.md")):
+            text += "\n\n" + g.read_text(encoding="utf-8")
     items: dict[int, dict] = {}
     cluster, color = None, None
     cur = None

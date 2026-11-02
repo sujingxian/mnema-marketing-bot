@@ -4,7 +4,9 @@ from __future__ import annotations
 from .emotion import parse_series, production_order
 from . import feature
 
-PRODUCT_ORDER = ["same-thing", "diary", "monthly", "privacy", "weekly", "plan", "insights", "journal"]
+# Product videos are paused until they get the v2 (voice + paper) treatment.
+PRODUCT_ORDER: list[str] = []
+PRODUCT_ORDER_V1 = ["same-thing", "diary", "monthly", "privacy", "weekly", "plan", "insights", "journal"]
 
 SAME_THING_CAPTIONS = {
     "tiktok": "What's the most useless thing an AI has ever said to you? #journaling #aitools #voicejournal #overthinking #buildinpublic",

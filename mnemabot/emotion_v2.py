@@ -362,7 +362,8 @@ def build(item: dict, out: Path, music: Path, workdir: Path | None = None) -> Pa
         filters.append(f"[{i + 1}:a]adelay={ms}|{ms},volume=1.6[v{i}]")
     mix = workdir / "mix.m4a"
     n_v = len(voice_inputs) // 2
-    fade = f"afade=t=in:st=0:d=0.3,afade=t=out:st={duration - 1.2:.2f}:d=1.2"
+    fade = (f"afade=t=in:st=0:d=0.3,afade=t=out:st={duration - 1.2:.2f}:d=1.2,"
+            "loudnorm=I=-14:TP=-1.5:LRA=11")
     if n_v:
         chain = ";".join(filters)
         vlabels = "".join(f"[v{i}]" for i in range(n_v))

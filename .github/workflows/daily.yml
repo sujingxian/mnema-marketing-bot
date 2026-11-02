@@ -32,8 +32,9 @@ jobs:
           python-version: "3.12"
       - name: Install deps
         run: |
-          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
-          pip install -q -r requirements.txt
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg espeak-ng
+          pip install -q torch --index-url https://download.pytorch.org/whl/cpu
+          pip install -q -r requirements.txt kokoro soundfile
       - name: Git identity
         run: |
           git config user.name "mnema-bot"
@@ -41,6 +42,7 @@ jobs:
       - name: Run
         env:
           BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+          MNEMA_VOICE: am_michael
           MODE: ${{ github.event.inputs.mode || 'run' }}
           INDEX: ${{ github.event.inputs.index }}
         run: |
