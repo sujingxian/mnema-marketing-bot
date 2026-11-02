@@ -1,0 +1,53 @@
+name: daily-post
+
+on:
+  schedule:
+    # 20:17 UTC ≈ 3–4pm US Eastern → posts land at 19:30 ET the same day.
+    - cron: "17 20 * * *"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "run | dry | diag"
+        default: "run"
+        required: true
+      index:
+        description: "force calendar slot (optional)"
+        required: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-post
+  cancel-in-progress: false
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install deps
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          pip install -q -r requirements.txt
+      - name: Git identity
+        run: |
+          git config user.name "mnema-bot"
+          git config user.email "mnema-bot@users.noreply.github.com"
+      - name: Run
+        env:
+          BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+          MODE: ${{ github.event.inputs.mode || 'run' }}
+          INDEX: ${{ github.event.inputs.index }}
+        run: |
+          ARGS=""
+          [ -n "$INDEX" ] && ARGS="--index $INDEX"
+          case "$MODE" in
+            diag) python -m mnemabot.diag ;;
+            dry)  python -m mnemabot.run_daily --dry-run $ARGS ;;
+            *)    python -m mnemabot.run_daily $ARGS ;;
+          esac

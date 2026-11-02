@@ -1,6 +1,6 @@
-"""Daily job: render the next video, publish it to the repo, schedule it on every Buffer channel.
+"""Daily job (runs in GitHub Actions): render the next video, publish it to the repo, schedule it on every Buffer channel.
 
-    python -m mnemabot.run_daily               # full run (needs BUFFER_API_KEY, git push access)
+    python -m mnemabot.run_daily               # full run (needs BUFFER_API_KEY secret + contents:write)
     python -m mnemabot.run_daily --dry-run     # render + print captions, no git / Buffer
     python -m mnemabot.run_daily --index 7     # force a calendar slot
 

@@ -6,6 +6,9 @@ Daily promo videos for Mnema → TikTok / YouTube Shorts / Instagram Reels (/ X)
 Never commit the Buffer API key. It is passed in as the `BUFFER_API_KEY` env var.
 
 ## Daily job
+Runs in GitHub Actions (`.github/workflows/daily.yml`) at 20:17 UTC. Secret: `BUFFER_API_KEY`.
+Manual: Actions → daily-post → Run workflow (mode `run` / `dry` / `diag`).
+
 ```
 pip install -r requirements.txt      # + ffmpeg on PATH
 BUFFER_API_KEY=... python -m mnemabot.run_daily
