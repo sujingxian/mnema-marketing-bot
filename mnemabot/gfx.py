@@ -176,16 +176,16 @@ def end_card(img, t, t0, dark=False):
 END_DUR = 3.2
 
 
-def encode(frame_fn, duration: float, out: Path, audio: Path, crf=20):
+def encode(frame_fn, duration: float, out: Path, audio: Path, crf=20, audio_raw=False):
     """Pipe frames into ffmpeg, mux a looped/trimmed audio bed with fades."""
     n = int(round(duration * FPS))
     out.parent.mkdir(parents=True, exist_ok=True)
     cmd = ["ffmpeg", "-y", "-v", "error",
            "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}", "-r", str(FPS), "-i", "-",
-           "-stream_loop", "-1", "-i", str(audio),
-           "-af", f"afade=t=in:st=0:d=0.4,afade=t=out:st={max(0, duration - 1.2):.2f}:d=1.2",
+           *(["-i", str(audio)] if audio_raw else ["-stream_loop", "-1", "-i", str(audio)]),
+           *([] if audio_raw else ["-af", f"afade=t=in:st=0:d=0.4,afade=t=out:st={max(0, duration - 1.2):.2f}:d=1.2"]),
            "-t", f"{duration:.2f}", "-map", "0:v", "-map", "1:a",
-           "-c:v", "libx264", "-preset", "veryfast", "-crf", str(crf), "-pix_fmt", "yuv420p",
+           "-c:v", "libx264", "-preset", "medium", "-crf", str(crf), "-pix_fmt", "yuv420p", "-tune", "animation",
            "-c:a", "aac", "-b:a", "160k", "-movflags", "+faststart", str(out)]
     p = subprocess.Popen(cmd, stdin=subprocess.PIPE)
     for i in range(n):
