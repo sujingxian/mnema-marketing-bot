@@ -5,7 +5,7 @@
    "index": 0,
    "slug": "emotion-41-powerlessness",
    "file": "2026-11-02-emotion-41-powerlessness-v2.mp4",
-   "due": "2026-11-03T00:30:00+00:00",
+   "due": "2026-11-02T02:43:39+00:00",
    "scheduled_at": "2026-11-02T02:05:03.916558+00:00",
    "results": [
     {
@@ -38,7 +38,9 @@
      "service": "instagram",
      "deleted": "6ae7efdf2da2578c1894e585"
     }
-   ]
+   ],
+   "planned_due": "2026-11-03T00:30:00+00:00",
+   "note": "shared now from Buffer by user on 2026-11-02 (Hobart)"
   }
  ]
 }
