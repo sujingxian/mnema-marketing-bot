@@ -4,24 +4,39 @@
   {
    "index": 0,
    "slug": "emotion-41-powerlessness",
-   "file": "2026-11-02-emotion-41-powerlessness.mp4",
+   "file": "2026-11-02-emotion-41-powerlessness-v2.mp4",
    "due": "2026-11-03T00:30:00+00:00",
    "scheduled_at": "2026-11-02T02:05:03.916558+00:00",
    "results": [
     {
      "service": "youtube",
      "ok": true,
-     "post_id": "6ae7efded016796999025748"
+     "post_id": "6ae7f62d386eccf912549af7"
     },
     {
      "service": "tiktok",
      "ok": true,
-     "post_id": "6ae7efdfd016796999025792"
+     "post_id": "6ae7f62e01fa08ffbe7e242b"
     },
     {
      "service": "instagram",
      "ok": true,
-     "post_id": "6ae7efdf2da2578c1894e585"
+     "post_id": "6ae7f62e01fa08ffbe7e2459"
+    }
+   ],
+   "replaced_at": "2026-11-02T02:32:14.609457+00:00",
+   "replaced": [
+    {
+     "service": "youtube",
+     "deleted": "6ae7efded016796999025748"
+    },
+    {
+     "service": "tiktok",
+     "deleted": "6ae7efdfd016796999025792"
+    },
+    {
+     "service": "instagram",
+     "deleted": "6ae7efdf2da2578c1894e585"
     }
    ]
   }
