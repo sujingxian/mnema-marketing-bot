@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: "run | dry | diag"
+        description: "run | dry | diag | replace"
         default: "run"
         required: true
       index:
@@ -50,6 +50,7 @@ jobs:
           [ -n "$INDEX" ] && ARGS="--index $INDEX"
           case "$MODE" in
             diag) python -m mnemabot.diag ;;
+            replace) python -m mnemabot.replace --index "${INDEX:-0}" ;;
             dry)  python -m mnemabot.run_daily --dry-run $ARGS ;;
             *)    python -m mnemabot.run_daily $ARGS ;;
           esac
