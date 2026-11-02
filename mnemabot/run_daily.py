@@ -42,11 +42,18 @@ def save_state(s: dict):
     STATE.write_text(json.dumps(s, indent=1, ensure_ascii=False) + "\n")
 
 
-def next_post_time(now_utc: dt.datetime) -> dt.datetime:
+def next_post_time(now_utc: dt.datetime, history: list | None = None) -> dt.datetime:
+    """Next 19:30 ET at least 90 min away, and never on an ET day that already has a post."""
     et = ZoneInfo("America/New_York")
     local = now_utc.astimezone(et)
     cand = local.replace(hour=POST_TIME_ET[0], minute=POST_TIME_ET[1], second=0, microsecond=0)
     if cand - local < dt.timedelta(minutes=90):
+        cand += dt.timedelta(days=1)
+    used = set()
+    for h in history or []:
+        if any(r.get("ok") for r in h.get("results", [])):
+            used.add(dt.datetime.fromisoformat(h["due"]).astimezone(et).date())
+    while cand.date() in used:
         cand += dt.timedelta(days=1)
     return cand.astimezone(dt.timezone.utc)
 
@@ -82,7 +89,8 @@ def wait_public(url: str, timeout=300):
 def metadata_for(service: str, caps: dict) -> dict | None:
     """Per-network extras. Field names verified against the live schema (see README)."""
     if service == "youtube":
-        return {"youtube": {"title": caps["youtube_title"], "categoryId": "22"}}
+        return {"youtube": {"title": caps["youtube_title"], "categoryId": "22", "privacy": "public",
+                            "madeForKids": False, "notifySubscribers": True, "embeddable": True}}
     if service == "instagram":
         return {"instagram": {"type": "reel", "shouldShareToFeed": True}}
     return None
@@ -119,7 +127,7 @@ def main():
     slug = plan.slug(entry)
     caps = plan.captions(entry)
     now = dt.datetime.now(dt.timezone.utc)
-    due = next_post_time(now)
+    due = next_post_time(now, state["history"])
     fname = f"{due.astimezone(ZoneInfo('America/New_York')).date().isoformat()}-{slug}.mp4"
     out = VIDEOS / fname
 
