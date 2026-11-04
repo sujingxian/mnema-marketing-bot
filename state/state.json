@@ -1,5 +1,5 @@
 {
- "next_index": 3,
+ "next_index": 4,
  "history": [
   {
    "index": 0,
@@ -87,6 +87,30 @@
      "service": "instagram",
      "ok": true,
      "post_id": "6ae944f95d11dd638e9cfdc9"
+    }
+   ]
+  },
+  {
+   "index": 3,
+   "slug": "emotion-02-anxiety",
+   "file": "2026-11-04-emotion-02-anxiety.mp4",
+   "due": "2026-11-05T00:30:00+00:00",
+   "scheduled_at": "2026-11-04T00:38:02.321848+00:00",
+   "results": [
+    {
+     "service": "youtube",
+     "ok": true,
+     "post_id": "6aea7ed1b8d162e0d8f52ed0"
+    },
+    {
+     "service": "tiktok",
+     "ok": true,
+     "post_id": "6aea7ed1ff887f055cdc6a41"
+    },
+    {
+     "service": "instagram",
+     "ok": true,
+     "post_id": "6aea7ed287b7c6d24c801e6b"
     }
    ]
   }
