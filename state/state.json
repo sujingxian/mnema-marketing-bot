@@ -1,5 +1,5 @@
 {
- "next_index": 4,
+ "next_index": 5,
  "history": [
   {
    "index": 0,
@@ -111,6 +111,30 @@
      "service": "instagram",
      "ok": true,
      "post_id": "6aea7ed287b7c6d24c801e6b"
+    }
+   ]
+  },
+  {
+   "index": 4,
+   "slug": "emotion-57-envy",
+   "file": "2026-11-05-emotion-57-envy.mp4",
+   "due": "2026-11-06T00:30:00+00:00",
+   "scheduled_at": "2026-11-05T00:54:42.234896+00:00",
+   "results": [
+    {
+     "service": "youtube",
+     "ok": true,
+     "post_id": "6aebd42eff03f6944a16be58"
+    },
+    {
+     "service": "tiktok",
+     "ok": true,
+     "post_id": "6aebd42eff03f6944a16be88"
+    },
+    {
+     "service": "instagram",
+     "ok": true,
+     "post_id": "6aebd42fe95790cd46ab06f0"
     }
    ]
   }
