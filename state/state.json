@@ -1,5 +1,5 @@
 {
- "next_index": 5,
+ "next_index": 6,
  "history": [
   {
    "index": 0,
@@ -135,6 +135,30 @@
      "service": "instagram",
      "ok": true,
      "post_id": "6aebd42fe95790cd46ab06f0"
+    }
+   ]
+  },
+  {
+   "index": 5,
+   "slug": "emotion-10-tension",
+   "file": "2026-11-06-emotion-10-tension.mp4",
+   "due": "2026-11-07T00:30:00+00:00",
+   "scheduled_at": "2026-11-06T00:59:27.926029+00:00",
+   "results": [
+    {
+     "service": "youtube",
+     "ok": true,
+     "post_id": "6aed26cddbada656bee4d95c"
+    },
+    {
+     "service": "tiktok",
+     "ok": true,
+     "post_id": "6aed26cdf3498efda75f6dce"
+    },
+    {
+     "service": "instagram",
+     "ok": true,
+     "post_id": "6aed26ce86fe9b837963d95a"
     }
    ]
   }
