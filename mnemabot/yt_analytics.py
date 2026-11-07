@@ -60,8 +60,14 @@ def get(url: str, params: dict, tok: str) -> dict:
 
 
 def recent_videos(tok: str, days: int) -> list[dict]:
-    ch = get(f"{DATA}/channels", {"part": "contentDetails", "mine": "true"}, tok)
-    uploads = ch["items"][0]["contentDetails"]["relatedPlaylists"]["uploads"]
+    ch = get(f"{DATA}/channels", {"part": "snippet,contentDetails,statistics", "mine": "true"}, tok)
+    if not ch.get("items"):
+        raise SystemExit("the authorised Google account has no YouTube channel — re-run scripts/yt_auth.py "
+                         "and pick the channel (brand account) in Google's account chooser")
+    me = ch["items"][0]
+    print(f"authorised as channel: {me['snippet']['title']} ({me['id']}), "
+          f"{me.get('statistics', {}).get('videoCount', '?')} videos in total")
+    uploads = me["contentDetails"]["relatedPlaylists"]["uploads"]
     cutoff = dt.datetime.now(dt.timezone.utc) - dt.timedelta(days=days)
     out, page = [], None
     while True:
@@ -161,7 +167,9 @@ def main() -> int:
     now = dt.datetime.now(dt.timezone.utc)
     videos = recent_videos(tok, args.days)
     if not videos:
-        print("no uploads in window")
+        print(f"no uploads in the last {args.days} days on this channel. If Buffer posts to a different "
+              "channel, re-run scripts/yt_auth.py, pick THAT channel in Google's account chooser, and "
+              "replace the YT_REFRESH_TOKEN secret.")
         return 0
     match(videos, posted_videos())
     m = metrics(tok, [v["id"] for v in videos], now.date() - dt.timedelta(days=args.days + 1), now.date())
