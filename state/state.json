@@ -1,5 +1,5 @@
 {
- "next_index": 6,
+ "next_index": 7,
  "history": [
   {
    "index": 0,
@@ -159,6 +159,30 @@
      "service": "instagram",
      "ok": true,
      "post_id": "6aed26ce86fe9b837963d95a"
+    }
+   ]
+  },
+  {
+   "index": 6,
+   "slug": "emotion-40-feeling-wronged",
+   "file": "2026-11-07-emotion-40-feeling-wronged.mp4",
+   "due": "2026-11-08T00:30:00+00:00",
+   "scheduled_at": "2026-11-07T00:08:00.640752+00:00",
+   "results": [
+    {
+     "service": "youtube",
+     "ok": true,
+     "post_id": "6aee6c3c9214322f68bd5ea1"
+    },
+    {
+     "service": "tiktok",
+     "ok": true,
+     "post_id": "6aee6c3cd6bbae6fa155ab76"
+    },
+    {
+     "service": "instagram",
+     "ok": true,
+     "post_id": "6aee6c3d229bf05daf1a3b06"
     }
    ]
   }
