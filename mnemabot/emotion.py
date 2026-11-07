@@ -195,8 +195,8 @@ def captions(item: dict) -> dict:
     line = _clean(item.get("line", "")).strip("“”\"")
     do = _clean(item.get("do", ""))
     tag = re.sub(r"[^a-z]", "", emo.lower())
-    tiktok = (f"{emo} isn't what you think it is. Which line hit hardest? "
-              f"#{tag} #emotions #selfawareness #journaling #feelings")
+    tiktok = (f"{hook.rstrip('—-').strip()} "
+              f"#{tag} #feelings #emotionalintelligence #overthinking #selfawareness")
     yt_title = f"{emo}: what it's actually asking for #shorts"[:100]
     yt_desc = (f"{hook} {_clean(item.get('turn',''))} {_clean(item.get('name',''))}\n\n"
                f"Try this: {do}\n\nMnema — a voice journal that names what you feel. Search Mnema on the App Store.")

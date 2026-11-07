@@ -34,6 +34,20 @@ Don't paraphrase them.
   LOOP is optional.
 - LINE is the sentence the emotion is actually saying. Usually first person, in straight double quotes.
 
+## What the video shows (since 2026-11-05)
+
+The daily videos use only **HOOK → TURN → LINE** (about 8–12 s, they loop). NAME and DO are still
+required — they go into the captions — but they are not on screen. So:
+
+- **HOOK carries the whole video.** It is on screen, complete, from the very first frame, and it is the
+  cover. Write it as a concrete everyday moment the viewer recognises in one second, not a general
+  idea. ≤ 14 words.
+  - Weak: "Anxiety isn't asking what if." / "You think you're overthinking."
+  - Better: "It's 1am and you're replaying one sentence from a meeting." /
+    "You've rewritten the 'can we talk' text six times."
+- **TURN** is the short reframe right after it, ≤ 10 words ("You're not a coward.").
+- **LINE** is the payoff the viewer would screenshot, ≤ 16 words.
+
 ## Hook rotation
 
 A misread flip · B sentence completion · C scene call-out · D correct a phrase · E question.
@@ -48,7 +62,7 @@ type in a row. Put the type in the heading: `— hook C`.
 - DO is one concrete thing someone can do in about 60 seconds, alone, for free.
 - Don't write about despair, grief, suicide, self-harm, abuse, trauma or eating. Those need a
   helpline card and human review, so they stay out of the automated queue.
-- Don't mention Mnema or any app in the script. The video adds the product at the end.
+- Don't mention Mnema or any app in the script. The brand is in the corner, the bio and the captions.
 - Don't quote real people, songs, books or other creators.
 - Spread each batch across at least 3 clusters, and lean towards everyday, relatable moments
   (work, texts, sleep, comparison, family, rest).

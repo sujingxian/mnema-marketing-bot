@@ -6,6 +6,7 @@ Every word pops in when it is spoken; the key word gets a marker highlight.
 from __future__ import annotations
 
 import math
+import os
 import random
 import subprocess
 import tempfile
@@ -24,6 +25,12 @@ INK = (24, 24, 28)
 INK_SOFT = (92, 88, 82)
 PEN = (32, 40, 70)
 NOTE = (252, 228, 140)
+
+# Short format (default since 2026-11-05): HOOK → TURN → LINE, no proof card, no end card.
+# Data from the first posts: 20–24 s videos were watched for ~2 s on average and almost never
+# finished, so the long format never left the first test audience. MNEMA_FORMAT=full restores it.
+SHORT = os.environ.get("MNEMA_FORMAT", "short") != "full"
+POP = 0.10 if SHORT else 0.32   # pop-in overshoot; 0.32 made a growing word cover its neighbour ("muchwhat")
 
 STOP = set("a an the is it its it's i you your you're to of and or but not in on for with that this be are was "
            "what if can could than then just so do don't isn't it’s you’re isn’t don’t".split())
@@ -220,7 +227,8 @@ def build(item: dict, out: Path, music: Path, workdir: Path | None = None) -> Pa
     # pastel highlighter version of the cluster colour
     marker = tuple(int(c * 0.45 + 255 * 0.55) for c in accent)
     marker = tuple(min(255, int(m + (m - sum(marker) / 3) * 0.9)) for m in marker)
-    beats = [(k, _clean(item[k])) for k in ("hook", "turn", "name", "line", "do") if item.get(k)]
+    kinds = ("hook", "turn", "line") if SHORT else ("hook", "turn", "name", "line", "do")
+    beats = [(k, _clean(item[k])) for k in kinds if item.get(k)]
     vo = tts.synth([b[1] for b in beats], workdir)
 
     # ---- timeline
@@ -231,9 +239,13 @@ def build(item: dict, out: Path, music: Path, workdir: Path | None = None) -> Pa
         hold = {"hook": 0.35, "line": 0.7, "do": 0.6}.get(kind, 0.15)
         tl.append(dict(kind=kind, txt=txt, t0=t, speak=d, end=t + d + hold, wav=wav))
         t += d + hold + GAP
-    proof_t0 = t - GAP + 0.1
-    cta_t0 = proof_t0 + 2.0
-    duration = cta_t0 + 2.6
+    if SHORT:
+        duration = t - GAP + 0.35          # ends on the LINE, then loops straight back to the hook
+        proof_t0 = cta_t0 = float("inf")
+    else:
+        proof_t0 = t - GAP + 0.1
+        cta_t0 = proof_t0 + 2.0
+        duration = cta_t0 + 2.6
 
     # ---- assets
     paper = make_paper()
@@ -254,6 +266,10 @@ def build(item: dict, out: Path, music: Path, workdir: Path | None = None) -> Pa
             var, start = {"hook": ("Black", 118), "turn": ("ExtraBold", 96), "name": ("ExtraBold", 92)}[b["kind"]]
             f, words, th = fit_kinetic(b["txt"], var, BOX_W, BOX_H, start)
             assign_times(words, b["t0"], b["speak"])
+            if b["kind"] == "hook" and SHORT:
+                # the whole hook is readable on frame 0 (and on the cover) — no word-by-word reveal
+                for w in words:
+                    w.t0 = -1.0
             if b["kind"] != "turn":
                 pick_key(words)
             for w in words:
@@ -301,7 +317,7 @@ def build(item: dict, out: Path, music: Path, workdir: Path | None = None) -> Pa
         top_a = 1 - prog(tt, cta_t0 - 0.25, 0.25)
         paste_fade(img, brand, (0, 70), top_a)
         if tt < proof_t0:
-            paste_fade(img, emo, ((W - emo.width) / 2, 190), ease(prog(tt, 0, 0.25)))
+            paste_fade(img, emo, ((W - emo.width) / 2, 190), 1.0 if SHORT else ease(prog(tt, 0, 0.25)))
 
         for b in tl:
             if not (b["t0"] - 0.05 <= tt < b["end"] + 0.3):
@@ -314,7 +330,7 @@ def build(item: dict, out: Path, music: Path, workdir: Path | None = None) -> Pa
                     if tt < w.t0:
                         continue
                     p = prog(tt, w.t0, 0.16)
-                    sc = 1 + 0.32 * (1 - ease(p))
+                    sc = 1 + POP * (1 - ease(p))
                     if getattr(w, "hl", None) is not None:
                         hp = ease(prog(tt, w.t0 + 0.05, 0.25))
                         hl = w.hl.crop((0, 0, max(1, int(w.hl.width * hp)), w.hl.height))
@@ -354,26 +370,7 @@ def build(item: dict, out: Path, music: Path, workdir: Path | None = None) -> Pa
         img.alpha_composite(grain[int(tt * 12) % len(grain)])
         return img
 
-    # ---- audio: voice beats placed on the timeline over a ducked music bed
-    voice_inputs, filters = [], []
-    for i, b in enumerate([b for b in tl if b["wav"]]):
-        voice_inputs += ["-i", str(b["wav"])]
-        ms = int(b["t0"] * 1000)
-        filters.append(f"[{i + 1}:a]adelay={ms}|{ms},volume=1.6[v{i}]")
-    mix = workdir / "mix.m4a"
-    n_v = len(voice_inputs) // 2
-    fade = (f"afade=t=in:st=0:d=0.3,afade=t=out:st={duration - 1.2:.2f}:d=1.2,"
-            "loudnorm=I=-14:TP=-1.5:LRA=11")
-    if n_v:
-        chain = ";".join(filters)
-        vlabels = "".join(f"[v{i}]" for i in range(n_v))
-        fc = (f"[0:a]atrim=0:{duration:.2f},volume=0.22[m];{chain};"
-              f"{vlabels}amix=inputs={n_v}:normalize=0[vo];[m][vo]amix=inputs=2:normalize=0,{fade}[a]")
-    else:
-        fc = f"[0:a]atrim=0:{duration:.2f},volume=0.9,{fade}[a]"
-    subprocess.run(["ffmpeg", "-y", "-v", "error", "-stream_loop", "-1", "-i", str(music), *voice_inputs,
-                    "-filter_complex", fc, "-map", "[a]", "-t", f"{duration:.2f}", "-c:a", "aac", "-b:a", "192k",
-                    str(mix)], check=True)
+    mix = gfx.mix_audio([(b["wav"], b["t0"]) for b in tl if b["wav"]], music, duration, workdir / "mix.m4a")
     gfx.encode(frame, duration, out, mix, crf=17, audio_raw=True)
     return out
 

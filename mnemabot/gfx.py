@@ -176,6 +176,32 @@ def end_card(img, t, t0, dark=False):
 END_DUR = 3.2
 
 
+def mix_audio(voice: list, music: Path, duration: float, out: Path, music_vol=0.22, voice_vol=1.6) -> Path:
+    """Voice clips [(wav, start_seconds)] placed on the timeline over a ducked, looped music bed.
+
+    Shared by every voiced format so they all get the same loudness and fades.
+    """
+    inputs, filters = [], []
+    for i, (wav, t0) in enumerate(voice):
+        inputs += ["-i", str(wav)]
+        ms = int(t0 * 1000)
+        filters.append(f"[{i + 1}:a]adelay={ms}|{ms},volume={voice_vol}[v{i}]")
+    fade = (f"afade=t=in:st=0:d=0.3,afade=t=out:st={max(0, duration - 1.2):.2f}:d=1.2,"
+            "loudnorm=I=-14:TP=-1.5:LRA=11")
+    n = len(voice)
+    if n == 0:
+        fc = f"[0:a]atrim=0:{duration:.2f},volume=0.9,{fade}[a]"
+    else:
+        labels = "".join(f"[v{i}]" for i in range(n))
+        vo = f"{labels}amix=inputs={n}:normalize=0[vo]" if n > 1 else "[v0]anull[vo]"
+        fc = (f"[0:a]atrim=0:{duration:.2f},volume={music_vol}[m];{';'.join(filters)};{vo};"
+              f"[m][vo]amix=inputs=2:normalize=0,{fade}[a]")
+    subprocess.run(["ffmpeg", "-y", "-v", "error", "-stream_loop", "-1", "-i", str(music), *inputs,
+                    "-filter_complex", fc, "-map", "[a]", "-t", f"{duration:.2f}",
+                    "-c:a", "aac", "-b:a", "192k", str(out)], check=True)
+    return out
+
+
 def encode(frame_fn, duration: float, out: Path, audio: Path, crf=20, audio_raw=False):
     """Pipe frames into ffmpeg, mux a looped/trimmed audio bed with fades."""
     n = int(round(duration * FPS))

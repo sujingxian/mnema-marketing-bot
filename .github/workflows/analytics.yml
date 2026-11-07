@@ -1,0 +1,36 @@
+name: weekly-analytics
+
+on:
+  schedule:
+    # Sunday 21:30 UTC = Monday 08:30 in Hobart, an hour before the Monday script routine reads it.
+    - cron: "30 21 * * 0"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-post          # never run while the daily post is pushing
+  cancel-in-progress: false
+
+jobs:
+  pull:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: YouTube analytics
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+        run: python -m mnemabot.yt_analytics
+      - name: Commit
+        run: |
+          git config user.name "mnema-bot"
+          git config user.email "mnema-bot@users.noreply.github.com"
+          git add analytics || true
+          git diff --cached --quiet && echo "no change" || (git commit -q -m "analytics: youtube $(date -u +%F)" && git pull -q --rebase origin main && git push -q origin main)

@@ -6,6 +6,18 @@ from . import feature
 
 # Product videos are paused until they get the v2 (voice + paper) treatment.
 PRODUCT_ORDER: list[str] = []
+
+# Format test (marketing/ZERO_COST_AGENT_PLAN.md §二): the day's script is rendered in three formats
+# and posted in three TikTok slots. Day d uses formats d, d+2, d+4 (mod n), so over a cycle every
+# format appears in every slot once and none always gets the evening slot. Add codes here as new
+# renderers land in mnemabot/formats.
+ENABLED_FORMATS = ["F1", "F2", "F3"]
+SLOT_OFFSETS = (0, 2, 4)
+
+
+def formats_for_day(day_no: int) -> list[str]:
+    n = len(ENABLED_FORMATS)
+    return [ENABLED_FORMATS[(day_no + o) % n] for o in SLOT_OFFSETS]
 PRODUCT_ORDER_V1 = ["same-thing", "diary", "monthly", "privacy", "weekly", "plan", "insights", "journal"]
 
 SAME_THING_CAPTIONS = {
