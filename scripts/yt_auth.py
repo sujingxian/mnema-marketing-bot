@@ -66,9 +66,10 @@ def main() -> int:
 
     url = "https://accounts.google.com/o/oauth2/v2/auth?" + urllib.parse.urlencode({
         "client_id": cid, "redirect_uri": redirect, "response_type": "code", "scope": SCOPES,
-        "access_type": "offline", "prompt": "consent", "state": state,
+        "access_type": "offline", "prompt": "consent select_account", "state": state,   # always show the account chooser
     })
-    print("\nOpening the Google sign-in page (sign in with the channel's Google account)…")
+    print("\nOpening the Google sign-in page. In the account chooser pick the account that OWNS THE CHANNEL")
+    print("(use 'Use another account' if it is not listed); if it shows the channel as a separate entry, pick that.")
     if not webbrowser.open(url):
         print("Open this URL yourself:\n", url)
     while "code" not in got:
