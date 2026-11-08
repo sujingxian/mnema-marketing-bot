@@ -1,5 +1,5 @@
 {
- "next_index": 8,
+ "next_index": 9,
  "history": [
   {
    "index": 0,
@@ -265,6 +265,88 @@
      "slot": 1,
      "ok": true,
      "post_id": "6aefb6e4562f2e6de9890df9"
+    }
+   ]
+  },
+  {
+   "index": 8,
+   "slug": "emotion-42-loneliness",
+   "post_day": "2026-11-09",
+   "file": "2026-11-09-emotion-42-loneliness-f3.mp4",
+   "due": "2026-11-09T13:00:00+00:00",
+   "scheduled_at": "2026-11-08T23:43:46.975103+00:00",
+   "videos": [
+    {
+     "format": "F3",
+     "slot": 0,
+     "file": "2026-11-09-emotion-42-loneliness-f3.mp4",
+     "due": "2026-11-09T13:00:00+00:00",
+     "url": "https://raw.githubusercontent.com/sujingxian/mnema-marketing-bot/main/videos/2026-11-09-emotion-42-loneliness-f3.mp4"
+    },
+    {
+     "format": "F2",
+     "slot": 1,
+     "file": "2026-11-09-emotion-42-loneliness-f2.mp4",
+     "due": "2026-11-09T18:00:00+00:00",
+     "url": "https://raw.githubusercontent.com/sujingxian/mnema-marketing-bot/main/videos/2026-11-09-emotion-42-loneliness-f2.mp4"
+    },
+    {
+     "format": "F1",
+     "slot": 2,
+     "file": "2026-11-09-emotion-42-loneliness-f1.mp4",
+     "due": "2026-11-10T00:30:00+00:00",
+     "url": "https://raw.githubusercontent.com/sujingxian/mnema-marketing-bot/main/videos/2026-11-09-emotion-42-loneliness-f1.mp4"
+    }
+   ],
+   "results": [
+    {
+     "service": "youtube",
+     "format": "F3",
+     "slot": 0,
+     "ok": true,
+     "post_id": "6af1097051492b796e6afdb4"
+    },
+    {
+     "service": "youtube",
+     "format": "F2",
+     "slot": 1,
+     "ok": true,
+     "post_id": "6af10971d6bbae6fa11b0b89"
+    },
+    {
+     "service": "youtube",
+     "format": "F1",
+     "slot": 2,
+     "ok": true,
+     "post_id": "6af10972004e4879a7e9d494"
+    },
+    {
+     "service": "tiktok",
+     "format": "F3",
+     "slot": 0,
+     "ok": true,
+     "post_id": "6af10972229bf05dafe04e23"
+    },
+    {
+     "service": "tiktok",
+     "format": "F2",
+     "slot": 1,
+     "ok": true,
+     "post_id": "6af1097351492b796e6affb4"
+    },
+    {
+     "service": "tiktok",
+     "format": "F1",
+     "slot": 2,
+     "ok": true,
+     "post_id": "6af10973004e4879a7e9d55b"
+    },
+    {
+     "service": "instagram",
+     "format": "F2",
+     "slot": 1,
+     "ok": true,
+     "post_id": "6af10974229bf05dafe04e64"
     }
    ]
   }
