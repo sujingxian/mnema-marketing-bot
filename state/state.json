@@ -1,5 +1,5 @@
 {
- "next_index": 9,
+ "next_index": 10,
  "history": [
   {
    "index": 0,
@@ -347,6 +347,88 @@
      "slot": 1,
      "ok": true,
      "post_id": "6af10974229bf05dafe04e64"
+    }
+   ]
+  },
+  {
+   "index": 9,
+   "slug": "emotion-55-impulsiveness",
+   "post_day": "2026-11-10",
+   "file": "2026-11-10-emotion-55-impulsiveness-f1.mp4",
+   "due": "2026-11-10T13:00:00+00:00",
+   "scheduled_at": "2026-11-10T02:47:19.938238+00:00",
+   "videos": [
+    {
+     "format": "F1",
+     "slot": 0,
+     "file": "2026-11-10-emotion-55-impulsiveness-f1.mp4",
+     "due": "2026-11-10T13:00:00+00:00",
+     "url": "https://raw.githubusercontent.com/sujingxian/mnema-marketing-bot/main/videos/2026-11-10-emotion-55-impulsiveness-f1.mp4"
+    },
+    {
+     "format": "F3",
+     "slot": 1,
+     "file": "2026-11-10-emotion-55-impulsiveness-f3.mp4",
+     "due": "2026-11-10T18:00:00+00:00",
+     "url": "https://raw.githubusercontent.com/sujingxian/mnema-marketing-bot/main/videos/2026-11-10-emotion-55-impulsiveness-f3.mp4"
+    },
+    {
+     "format": "F2",
+     "slot": 2,
+     "file": "2026-11-10-emotion-55-impulsiveness-f2.mp4",
+     "due": "2026-11-11T00:30:00+00:00",
+     "url": "https://raw.githubusercontent.com/sujingxian/mnema-marketing-bot/main/videos/2026-11-10-emotion-55-impulsiveness-f2.mp4"
+    }
+   ],
+   "results": [
+    {
+     "service": "youtube",
+     "format": "F1",
+     "slot": 0,
+     "ok": true,
+     "post_id": "6af285f726f9e6aeeadca5bf"
+    },
+    {
+     "service": "youtube",
+     "format": "F3",
+     "slot": 1,
+     "ok": true,
+     "post_id": "6af285f7e261c09acc962915"
+    },
+    {
+     "service": "youtube",
+     "format": "F2",
+     "slot": 2,
+     "ok": true,
+     "post_id": "6af285f8b59b34913a4fa70c"
+    },
+    {
+     "service": "tiktok",
+     "format": "F1",
+     "slot": 0,
+     "ok": true,
+     "post_id": "6af285f8223aa16048e45681"
+    },
+    {
+     "service": "tiktok",
+     "format": "F3",
+     "slot": 1,
+     "ok": true,
+     "post_id": "6af285f826f9e6aeeadca60a"
+    },
+    {
+     "service": "tiktok",
+     "format": "F2",
+     "slot": 2,
+     "ok": true,
+     "post_id": "6af285f905af22d72600756b"
+    },
+    {
+     "service": "instagram",
+     "format": "F3",
+     "slot": 1,
+     "ok": true,
+     "post_id": "6af285f9b59b34913a4fa75d"
     }
    ]
   }
