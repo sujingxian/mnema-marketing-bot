@@ -1,5 +1,5 @@
 {
- "next_index": 12,
+ "next_index": 13,
  "history": [
   {
    "index": 0,
@@ -593,6 +593,88 @@
      "slot": 1,
      "ok": true,
      "post_id": "6af51cd73d8c751bfd09889c"
+    }
+   ]
+  },
+  {
+   "index": 12,
+   "slug": "emotion-13-shame",
+   "post_day": "2026-11-13",
+   "file": "2026-11-13-emotion-13-shame-f1.mp4",
+   "due": "2026-11-13T13:00:00+00:00",
+   "scheduled_at": "2026-11-13T01:06:29.381949+00:00",
+   "videos": [
+    {
+     "format": "F1",
+     "slot": 0,
+     "file": "2026-11-13-emotion-13-shame-f1.mp4",
+     "due": "2026-11-13T13:00:00+00:00",
+     "url": "https://raw.githubusercontent.com/sujingxian/mnema-marketing-bot/main/videos/2026-11-13-emotion-13-shame-f1.mp4"
+    },
+    {
+     "format": "F3",
+     "slot": 1,
+     "file": "2026-11-13-emotion-13-shame-f3.mp4",
+     "due": "2026-11-13T18:00:00+00:00",
+     "url": "https://raw.githubusercontent.com/sujingxian/mnema-marketing-bot/main/videos/2026-11-13-emotion-13-shame-f3.mp4"
+    },
+    {
+     "format": "F2",
+     "slot": 2,
+     "file": "2026-11-13-emotion-13-shame-f2.mp4",
+     "due": "2026-11-14T00:30:00+00:00",
+     "url": "https://raw.githubusercontent.com/sujingxian/mnema-marketing-bot/main/videos/2026-11-13-emotion-13-shame-f2.mp4"
+    }
+   ],
+   "results": [
+    {
+     "service": "youtube",
+     "format": "F1",
+     "slot": 0,
+     "ok": true,
+     "post_id": "6af662cffb90ccefdd0e9f15"
+    },
+    {
+     "service": "youtube",
+     "format": "F3",
+     "slot": 1,
+     "ok": true,
+     "post_id": "6af662cfe1d8eff61091795c"
+    },
+    {
+     "service": "youtube",
+     "format": "F2",
+     "slot": 2,
+     "ok": true,
+     "post_id": "6af662d0e1d8eff610917999"
+    },
+    {
+     "service": "tiktok",
+     "format": "F1",
+     "slot": 0,
+     "ok": true,
+     "post_id": "6af662d0ba218f32636d9fa0"
+    },
+    {
+     "service": "tiktok",
+     "format": "F3",
+     "slot": 1,
+     "ok": true,
+     "post_id": "6af662d1c1a0010a5bed76e9"
+    },
+    {
+     "service": "tiktok",
+     "format": "F2",
+     "slot": 2,
+     "ok": true,
+     "post_id": "6af662d1fb90ccefdd0e9fd9"
+    },
+    {
+     "service": "instagram",
+     "format": "F3",
+     "slot": 1,
+     "ok": true,
+     "post_id": "6af662d2ba218f32636da002"
     }
    ]
   }
