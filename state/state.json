@@ -1,5 +1,5 @@
 {
- "next_index": 14,
+ "next_index": 15,
  "history": [
   {
    "index": 0,
@@ -757,6 +757,88 @@
      "slot": 1,
      "ok": true,
      "post_id": "6af7b163d16af15d4de31bf7"
+    }
+   ]
+  },
+  {
+   "index": 14,
+   "slug": "emotion-56-resentment",
+   "post_day": "2026-11-15",
+   "file": "2026-11-15-emotion-56-resentment-f3.mp4",
+   "due": "2026-11-15T13:00:00+00:00",
+   "scheduled_at": "2026-11-14T23:55:49.031863+00:00",
+   "videos": [
+    {
+     "format": "F3",
+     "slot": 0,
+     "file": "2026-11-15-emotion-56-resentment-f3.mp4",
+     "due": "2026-11-15T13:00:00+00:00",
+     "url": "https://raw.githubusercontent.com/sujingxian/mnema-marketing-bot/main/videos/2026-11-15-emotion-56-resentment-f3.mp4"
+    },
+    {
+     "format": "F2",
+     "slot": 1,
+     "file": "2026-11-15-emotion-56-resentment-f2.mp4",
+     "due": "2026-11-15T18:00:00+00:00",
+     "url": "https://raw.githubusercontent.com/sujingxian/mnema-marketing-bot/main/videos/2026-11-15-emotion-56-resentment-f2.mp4"
+    },
+    {
+     "format": "F1",
+     "slot": 2,
+     "file": "2026-11-15-emotion-56-resentment-f1.mp4",
+     "due": "2026-11-16T00:30:00+00:00",
+     "url": "https://raw.githubusercontent.com/sujingxian/mnema-marketing-bot/main/videos/2026-11-15-emotion-56-resentment-f1.mp4"
+    }
+   ],
+   "results": [
+    {
+     "service": "youtube",
+     "format": "F3",
+     "slot": 0,
+     "ok": true,
+     "post_id": "6af8f534918fe79d2eaf5d72"
+    },
+    {
+     "service": "youtube",
+     "format": "F2",
+     "slot": 1,
+     "ok": true,
+     "post_id": "6af8f535e5a113497ab609bf"
+    },
+    {
+     "service": "youtube",
+     "format": "F1",
+     "slot": 2,
+     "ok": true,
+     "post_id": "6af8f535b9a106584c78067c"
+    },
+    {
+     "service": "tiktok",
+     "format": "F3",
+     "slot": 0,
+     "ok": true,
+     "post_id": "6af8f535e5a113497ab609ef"
+    },
+    {
+     "service": "tiktok",
+     "format": "F2",
+     "slot": 1,
+     "ok": true,
+     "post_id": "6af8f536e5a113497ab60a3a"
+    },
+    {
+     "service": "tiktok",
+     "format": "F1",
+     "slot": 2,
+     "ok": true,
+     "post_id": "6af8f536c5b364e062231dc6"
+    },
+    {
+     "service": "instagram",
+     "format": "F2",
+     "slot": 1,
+     "ok": true,
+     "post_id": "6af8f536b9a106584c7806cd"
     }
    ]
   }
