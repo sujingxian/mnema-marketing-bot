@@ -1,5 +1,5 @@
 {
- "next_index": 15,
+ "next_index": 16,
  "history": [
   {
    "index": 0,
@@ -839,6 +839,88 @@
      "slot": 1,
      "ok": true,
      "post_id": "6af8f536b9a106584c7806cd"
+    }
+   ]
+  },
+  {
+   "index": 15,
+   "slug": "emotion-44-emotional-exhaustion",
+   "post_day": "2026-11-16",
+   "file": "2026-11-16-emotion-44-emotional-exhaustion-f1.mp4",
+   "due": "2026-11-16T13:00:00+00:00",
+   "scheduled_at": "2026-11-15T23:59:01.773520+00:00",
+   "videos": [
+    {
+     "format": "F1",
+     "slot": 0,
+     "file": "2026-11-16-emotion-44-emotional-exhaustion-f1.mp4",
+     "due": "2026-11-16T13:00:00+00:00",
+     "url": "https://raw.githubusercontent.com/sujingxian/mnema-marketing-bot/main/videos/2026-11-16-emotion-44-emotional-exhaustion-f1.mp4"
+    },
+    {
+     "format": "F3",
+     "slot": 1,
+     "file": "2026-11-16-emotion-44-emotional-exhaustion-f3.mp4",
+     "due": "2026-11-16T18:00:00+00:00",
+     "url": "https://raw.githubusercontent.com/sujingxian/mnema-marketing-bot/main/videos/2026-11-16-emotion-44-emotional-exhaustion-f3.mp4"
+    },
+    {
+     "format": "F2",
+     "slot": 2,
+     "file": "2026-11-16-emotion-44-emotional-exhaustion-f2.mp4",
+     "due": "2026-11-17T00:30:00+00:00",
+     "url": "https://raw.githubusercontent.com/sujingxian/mnema-marketing-bot/main/videos/2026-11-16-emotion-44-emotional-exhaustion-f2.mp4"
+    }
+   ],
+   "results": [
+    {
+     "service": "youtube",
+     "format": "F1",
+     "slot": 0,
+     "ok": true,
+     "post_id": "6afa476aa869c35e5ba53770"
+    },
+    {
+     "service": "youtube",
+     "format": "F3",
+     "slot": 1,
+     "ok": true,
+     "post_id": "6afa476a8e87c256a39d5f72"
+    },
+    {
+     "service": "youtube",
+     "format": "F2",
+     "slot": 2,
+     "ok": true,
+     "post_id": "6afa476a60a910801c5778dd"
+    },
+    {
+     "service": "tiktok",
+     "format": "F1",
+     "slot": 0,
+     "ok": true,
+     "post_id": "6afa476bff465c57dabe6a33"
+    },
+    {
+     "service": "tiktok",
+     "format": "F3",
+     "slot": 1,
+     "ok": true,
+     "post_id": "6afa476b60a910801c577b28"
+    },
+    {
+     "service": "tiktok",
+     "format": "F2",
+     "slot": 2,
+     "ok": true,
+     "post_id": "6afa476c60a910801c577b6b"
+    },
+    {
+     "service": "instagram",
+     "format": "F3",
+     "slot": 1,
+     "ok": true,
+     "post_id": "6afa476c60a910801c577b94"
     }
    ]
   }
