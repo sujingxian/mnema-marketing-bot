@@ -129,6 +129,7 @@ JUDGE_ERROR = ""
 def judge(say: str, reply: str) -> int | None:
     """1–5 from a small model on GitHub Models (free in Actions). None when unavailable."""
     global JUDGE_ERROR
+    JUDGE_ERROR = ""
     tok = os.environ.get("GITHUB_TOKEN")
     if not tok:
         JUDGE_ERROR = "no GITHUB_TOKEN"
@@ -179,7 +180,7 @@ def fetch(cid: str, tries: int = 5, dest: Path = CONVOS) -> Path:
             why = "judge unavailable; not posting unjudged replies"
         sc = round((j or 0) + score(say, reply), 3)
         attempts.append({"reply": reply, "session_id": start["session_id"], "rejected": why,
-                         "judge": j, "score": sc, **({"judge_error": JUDGE_ERROR} if j is None and why is None else {})})
+                         "judge": j, "score": sc, **({"judge_error": JUDGE_ERROR} if j is None else {})})
         if why is None and (best is None or sc > best["score"]):
             best = attempts[-1]
         if best is not None and (best["judge"] == 5 or (best["judge"] is None and best["score"] >= 0.8)):
