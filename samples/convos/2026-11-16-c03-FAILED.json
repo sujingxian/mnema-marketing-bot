@@ -3,39 +3,44 @@
  "say": "My mum called to ask if I'm eating properly and I snapped at her. She was just being nice.",
  "attempts": [
   {
-   "reply": "Maybe you were already worn thin, and her care landed like one more thing to answer for. Now you’re holding the guilt because she didn’t deserve the snap.",
-   "session_id": "ebaa1173-4c74-407a-87af-0e0f73f2ee5f",
+   "reply": "You knew she was trying to care for you, and now you’re probably regretting snapping at her.",
+   "session_id": "fa64a02f-2ba9-4fa8-bd9e-a38082970930",
    "rejected": "judge unavailable; not posting unjudged replies",
    "judge": null,
-   "score": 0.867
+   "score": 0.75,
+   "judge_error": "https://models.github.ai/inference/chat/completions: 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body=b'OK\\r\\n' || https://models.inference.ai.azure.com/chat/completions: None URLError(gaierror(-2, 'Name or service not known')) body=b''"
   },
   {
-   "reply": "Maybe you were already worn thin, and her concern landed like one more thing to manage. Now you’re holding the guilt because she meant well.",
-   "session_id": "3ed12700-ef9f-40c2-b86e-e9653bae4802",
+   "reply": "Maybe you were already worn thin, and her care landed like one more thing you had to answer for. Now you’re holding the fact that she meant well too.",
+   "session_id": "70b11156-2e99-4919-9ff1-3404d8ee79fc",
    "rejected": "judge unavailable; not posting unjudged replies",
    "judge": null,
-   "score": 0.867
+   "score": 0.875,
+   "judge_error": "https://models.github.ai/inference/chat/completions: 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body=b'OK\\r\\n' || https://models.inference.ai.azure.com/chat/completions: None URLError(gaierror(-2, 'Name or service not known')) body=b''"
   },
   {
-   "reply": "You knew she meant well, and still didn’t have much room for her concern in that moment. Now you’re left feeling bad for snapping at someone who was trying to care for you.",
-   "session_id": "65f2ce24-49aa-4595-9246-23503578af55",
+   "reply": "Maybe you were already stretched thin, and her care landed like one more thing to answer for. Now you’re noticing she didn’t deserve the sharpness.",
+   "session_id": "99ebd277-9eff-49b6-81ea-a7ba6f68baa3",
    "rejected": "judge unavailable; not posting unjudged replies",
    "judge": null,
-   "score": 0.882
+   "score": 0.846,
+   "judge_error": "https://models.github.ai/inference/chat/completions: 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body=b'OK\\r\\n' || https://models.inference.ai.azure.com/chat/completions: None URLError(gaierror(-2, 'Name or service not known')) body=b''"
   },
   {
-   "reply": "Maybe you were already worn thin, and her care landed like one more thing you had to answer for. Now you’re left feeling bad because she meant well.",
-   "session_id": "05fc8c35-8e53-4a39-9c4a-f689b19a49e0",
+   "reply": "Maybe you were already stretched thin, and her care landed like one more thing you had to answer for. Now you’re left feeling bad because she meant well.",
+   "session_id": "d48a1cf2-1648-4bdd-a56b-131738b94a09",
    "rejected": "judge unavailable; not posting unjudged replies",
    "judge": null,
-   "score": 0.875
+   "score": 0.875,
+   "judge_error": "https://models.github.ai/inference/chat/completions: 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body=b'OK\\r\\n' || https://models.inference.ai.azure.com/chat/completions: None URLError(gaierror(-2, 'Name or service not known')) body=b''"
   },
   {
-   "reply": "You knew she meant well, but maybe you didn’t have room for care to feel like anything but pressure right then.",
-   "session_id": "49277285-6ae9-4cd6-97d8-91fe842bd428",
+   "reply": "Maybe you were already worn thin, and her care landed like one more thing to answer for. Now you feel bad because she didn’t deserve the snap.",
+   "session_id": "0db15c59-c7e2-4669-bc5f-d87976e75db5",
    "rejected": "judge unavailable; not posting unjudged replies",
    "judge": null,
-   "score": 0.909
+   "score": 0.857,
+   "judge_error": "https://models.github.ai/inference/chat/completions: 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body=b'OK\\r\\n' || https://models.inference.ai.azure.com/chat/completions: None URLError(gaierror(-2, 'Name or service not known')) body=b''"
   }
  ]
 }
