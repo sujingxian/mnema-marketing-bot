@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: "run | dry | diag | replace"
+        description: "run | dry | diag | replace | convo"
         default: "run"
         required: true
       index:
@@ -42,6 +42,7 @@ jobs:
       - name: Run
         env:
           BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+          MNEMA_BOT_LOGIN: ${{ secrets.MNEMA_BOT_LOGIN }}
           MNEMA_VOICE: am_michael
           MODE: ${{ github.event.inputs.mode || 'run' }}
           INDEX: ${{ github.event.inputs.index }}
@@ -50,6 +51,7 @@ jobs:
           [ -n "$INDEX" ] && ARGS="--index $INDEX"
           case "$MODE" in
             diag) python -m mnemabot.diag ;;
+            convo) python -m mnemabot.convo sample "${INDEX:-3}" ;;
             replace) python -m mnemabot.replace --index "${INDEX:-0}" ;;
             dry)  python -m mnemabot.run_daily --dry-run $ARGS ;;
             *)    python -m mnemabot.run_daily $ARGS ;;

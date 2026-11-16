@@ -27,7 +27,7 @@ import urllib.request
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-from . import plan, emotion, feature, buffer
+from . import plan, emotion, feature, buffer, convo
 from .formats import FORMATS
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -37,7 +37,7 @@ AUDIO = sorted((ROOT / "assets" / "audio").glob("*.m4a"))
 REPO = "sujingxian/mnema-marketing-bot"
 BRANCH = "main"
 ET = ZoneInfo("America/New_York")
-SLOTS_ET = [(8, 0), (13, 0), (19, 30)]   # morning commute, lunch, evening (the guide's 19:00–22:00 window)
+SLOTS_ET = [(8, 0), (13, 0)]   # 2026-11-16 retro: 08:00 emotion card (F2), 13:00 real conversation (best TikTok slot)
 IG_SLOT = 1                              # Instagram gets one post a day
 MIN_LEAD = dt.timedelta(minutes=90)      # Buffer needs time to fetch the file before the first slot
 KEEP_DAYS = 21                           # delete repo videos older than this (Buffer has fetched them long before)
@@ -89,7 +89,7 @@ def slots_for(service: str, n_slots: int) -> list[int]:
     if service in ("tiktok", "youtube"):
         return list(range(n_slots))
     if service == "instagram":
-        return [min(IG_SLOT, n_slots - 1)]
+        return [IG_SLOT, 0]               # first one that exists that day (conversation, else the card)
     return [n_slots - 1]                 # x / twitter: evening only
 
 
@@ -148,11 +148,28 @@ def cleanup_old():
             git("rm", "-q", str(f.relative_to(ROOT)))
 
 
+def write_pinned(day: dt.date, videos: list[dict]):
+    """PINNED_COMMENTS.md: newest first. TikTok's API can't pin comments, so the owner pastes these."""
+    p = ROOT / "PINNED_COMMENTS.md"
+    old = p.read_text(encoding="utf-8").split("\n---\n", 1)[-1] if p.exists() else ""
+    lines = [f"## {day.isoformat()}"]
+    for v in videos:
+        pin = v["caps"].get("pinned")
+        if pin:
+            lines.append(f"- **{SLOTS_ET[v['slot']][0]:02d}:{SLOTS_ET[v['slot']][1]:02d} ET · {v['slug']}** → {pin}")
+    if len(lines) == 1:
+        return
+    head = ("# Pinned comments to post\n\nTikTok and Instagram can't pin comments through any API. "
+            "After a post goes live, paste its line as a comment and pin it (about 1 minute).\n\n---\n")
+    p.write_text(head + "\n".join(lines) + "\n\n" + old.lstrip(), encoding="utf-8")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--index", type=int)
     ap.add_argument("--formats", help="comma-separated format codes, e.g. F2 or F1,F2,F3")
+    ap.add_argument("--no-convo", action="store_true", help="skip the real-conversation post")
     args = ap.parse_args()
 
     cal = plan.calendar()
@@ -166,25 +183,39 @@ def main():
     now = dt.datetime.now(dt.timezone.utc)
     day = next_post_day(now, state["history"])
 
+    videos = []
     if entry["kind"] == "emotion":
         formats = args.formats.split(",") if args.formats else plan.formats_for_day(idx)
         for f in formats:
             if f not in FORMATS:
                 raise SystemExit(f"unknown format {f}; known: {', '.join(FORMATS)}")
-        # a day with fewer formats than slots uses the last slots (evening first)
-        slot_of = {i: s for i, s in enumerate(range(len(SLOTS_ET) - len(formats), len(SLOTS_ET)))}
-    else:
-        formats = ["product"]
-        slot_of = {0: len(SLOTS_ET) - 1}
-
-    videos = []
-    for i, fmt in enumerate(formats):
+        fmt = formats[0]
         fname = f"{day.isoformat()}-{slug}-{fmt.lower()}.mp4"
-        due = slot_time(day, slot_of[i])
+        due = slot_time(day, 0)
         print(f"slot {idx}: {slug} [{fmt}] → {fname}, due {due.astimezone(ET).strftime('%a %H:%M ET')}")
         render(entry, fmt, VIDEOS / fname, idx)
-        videos.append({"format": fmt, "slot": slot_of[i], "file": fname, "due": due})
-    print(json.dumps(caps, indent=1, ensure_ascii=False))
+        videos.append({"format": fmt, "slot": 0, "file": fname, "due": due, "caps": caps, "slug": slug})
+    else:
+        fname = f"{day.isoformat()}-{slug}-product.mp4"
+        due = slot_time(day, 0)
+        render(entry, "product", VIDEOS / fname, idx)
+        videos.append({"format": "product", "slot": 0, "file": fname, "due": due, "caps": caps, "slug": slug})
+
+    # real conversation (13:00 ET). Never blocks the day: on any failure the card still goes out.
+    convo_rec = None
+    if not args.no_convo:
+        try:
+            cid = convo.next_id()
+            rec_path = convo.fetch(cid)
+            convo_rec = json.loads(rec_path.read_text())
+            cfile = f"{day.isoformat()}-convo-{cid}.mp4"
+            convo.build(convo_rec, VIDEOS / cfile, AUDIO[(idx + 1) % len(AUDIO)])
+            videos.append({"format": "convo", "slot": 1, "file": cfile, "due": slot_time(day, 1),
+                           "caps": convo.captions(convo_rec), "slug": f"convo-{cid}",
+                           "record": str(rec_path.relative_to(ROOT))})
+            print(f"convo {cid}: {convo_rec['say']!r} → {convo_rec['reply']!r}")
+        except convo.ConvoError as e:
+            print(f"WARNING: conversation skipped today: {e}")
     if args.dry_run:
         return
 
@@ -192,7 +223,11 @@ def main():
     cleanup_old()
     for v in videos:
         git("add", f"videos/{v['file']}")
-    git("commit", "-q", "-m", f"video: {day.isoformat()} {slug} ({', '.join(formats)})")
+        if v.get("record"):
+            git("add", v["record"])
+    write_pinned(day, videos)
+    git("add", "PINNED_COMMENTS.md")
+    git("commit", "-q", "-m", f"video: {day.isoformat()} {slug} ({', '.join(v['format'] for v in videos)})")
     git("push", "-q", "origin", BRANCH)
     for v in videos:
         v["url"] = f"https://raw.githubusercontent.com/{REPO}/{BRANCH}/videos/{v['file']}"
@@ -204,13 +239,17 @@ def main():
         svc = (ch.get("service") or "").lower()
         if svc not in SERVICES or ch.get("isQueuePaused"):
             continue
-        for s in slots_for(svc, len(SLOTS_ET)):
+        wanted = slots_for(svc, len(SLOTS_ET))
+        if svc == "instagram":
+            wanted = [next(s for s in wanted if s in by_slot)]
+        for s in wanted:
             v = by_slot.get(s)
             if v is None:
                 continue
             due_iso = v["due"].isoformat().replace("+00:00", "Z")
             try:
-                post = buffer.create_post(ch["id"], text_for(svc, caps), v["url"], due_iso, metadata_for(svc, caps))
+                post = buffer.create_post(ch["id"], text_for(svc, v["caps"]), v["url"], due_iso,
+                                          metadata_for(svc, v["caps"]))
                 results.append({"service": svc, "format": v["format"], "slot": s, "ok": True, "post_id": post.get("id")})
             except buffer.BufferError as e:
                 results.append({"service": svc, "format": v["format"], "slot": s, "ok": False, "error": str(e)[:400]})
@@ -220,7 +259,8 @@ def main():
         "index": idx, "slug": slug, "post_day": day.isoformat(),
         "file": videos[0]["file"], "due": videos[0]["due"].isoformat(),   # kept for older tooling
         "scheduled_at": now.isoformat(),
-        "videos": [{**v, "due": v["due"].isoformat()} for v in videos],
+        "videos": [{k: (val.isoformat() if k == "due" else val) for k, val in v.items() if k != "caps"}
+                   for v in videos],
         "results": results,
     })
     if any(r["ok"] for r in results):

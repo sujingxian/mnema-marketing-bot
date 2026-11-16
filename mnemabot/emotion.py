@@ -53,7 +53,27 @@ def parse_series(path: Path = SERIES) -> dict[int, dict]:
             cur[key] = m.group(2).strip()
         elif key and raw.startswith("  ") and raw.strip():
             cur[key] += " " + raw.strip()
+    _apply_overrides(items)
     return items
+
+
+OVERRIDES = ROOT / "content" / "hook_overrides.md"
+
+
+def _apply_overrides(items: dict[int, dict]) -> None:
+    """content/hook_overrides.md: `NN | HOOK | TURN` (empty TURN keeps the original)."""
+    if not OVERRIDES.exists():
+        return
+    for raw in OVERRIDES.read_text(encoding="utf-8").splitlines():
+        m = re.match(r"^(\d+)\s*\|\s*(.+?)\s*\|\s*(.*?)\s*$", raw)
+        if not m or int(m.group(1)) not in items:
+            continue
+        it = items[int(m.group(1))]
+        it.setdefault("hook_orig", it.get("hook"))
+        it["hook"] = m.group(2)
+        if m.group(3):
+            it.setdefault("turn_orig", it.get("turn"))
+            it["turn"] = m.group(3)
 
 
 def production_order(items: dict[int, dict], path: Path = SERIES) -> list[int]:

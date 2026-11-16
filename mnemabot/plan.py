@@ -11,7 +11,7 @@ PRODUCT_ORDER: list[str] = []
 # and posted in three TikTok slots. Day d uses formats d, d+2, d+4 (mod n), so over a cycle every
 # format appears in every slot once and none always gets the evening slot. Add codes here as new
 # renderers land in mnemabot/formats.
-ENABLED_FORMATS = ["F1", "F2", "F3"]
+ENABLED_FORMATS = ["F2"]          # 2026-11-16 retro: F2 led on TikTok, YouTube and Instagram
 SLOT_OFFSETS = (0, 2, 4)
 
 

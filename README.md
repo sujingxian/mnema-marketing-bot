@@ -32,7 +32,22 @@ python -m mnemabot.buffer channels   # connected channels
 python -m mnemabot.buffer schema     # CreatePostInput + metadata types (verify field names)
 ```
 
-## Format test (since 2026-11-08)
+## Daily schedule (since 2026-11-17, after the week-1 retro)
+
+| ET | post | platforms |
+|---|---|---|
+| 08:00 | emotion card, format **F2** (hook from `content/hook_overrides.md` where set) | TikTok, YouTube |
+| 13:00 | **real conversation**: one first-person line from `content/convo_scenarios.md` → Mnema's real, unedited reply from the production backend (`mnemabot/convo.py`) | TikTok, YouTube, Instagram |
+
+The conversation post needs the `MNEMA_BOT_LOGIN` secret (`email:password` of a dedicated bot account; it
+registers itself on first use). Every reply is saved verbatim in `content/convos/` before rendering; replies
+that open with canned phrases or run long are discarded, never edited. If the backend or secret is missing,
+the day still posts the card. `PINNED_COMMENTS.md` lists the comment to pin under each post (no API can pin).
+Trial run without using scenarios up: Actions → daily-post → mode `convo` (writes to `samples/convos/`).
+
+Weekly report 2026-11-16: `marketing/analytics-inbox/reports/2026-11-16.md` in the app repo.
+
+## Format test (2026-11-08 – 11-16, closed)
 
 Posts were watched for ~2 s on average (0–2 % completion) at 20–24 s, so the daily job now renders
 the day's script in **three formats** (`mnemabot/formats/`) and posts them in three TikTok slots
