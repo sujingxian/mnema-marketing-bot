@@ -1,17 +1,18 @@
 {
  "id": "c01",
  "say": "My manager said \"good job\" in the meeting but didn't look at me. I've been thinking about it all afternoon.",
- "reply": "That praise probably felt oddly hard to take in when he didn’t meet your eyes.",
- "fetched_at": "2026-11-16T05:42:07.987086+00:00",
+ "reply": "Maybe the praise felt a little hollow when he wouldn’t meet your eyes. You’ve been left wondering what he really meant.",
+ "fetched_at": "2026-11-16T06:16:24.619372+00:00",
  "endpoint": "https://backend-lively-butterfly-3415.fly.dev/api/checkin/message",
- "session_id": "b07bf531-5b67-44b1-bfe2-299c03901453",
+ "session_id": "f2861c4a-73a4-401e-8932-e6f64870b640",
  "attempts": [
   {
-   "reply": "That praise probably felt oddly hard to take in when he didn’t meet your eyes.",
-   "session_id": "b07bf531-5b67-44b1-bfe2-299c03901453",
+   "reply": "Maybe the praise felt a little hollow when he wouldn’t meet your eyes. You’ve been left wondering what he really meant.",
+   "session_id": "f2861c4a-73a4-401e-8932-e6f64870b640",
    "rejected": null,
    "judge": null,
-   "score": 1.0
+   "score": 1.2,
+   "judge_error": "openai/gpt-4.1-mini: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err='' || openai/gpt-4.1: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err=''"
   }
  ],
  "note": "reply is verbatim backend output; first line written by the account owner; best of the attempts below (judge score + word overlap), none edited"

@@ -1,24 +1,18 @@
 {
  "id": "c02",
  "say": "I cancelled plans with my friend again tonight. I said I was tired, but honestly I just didn't want to be seen.",
- "reply": "You didn’t have the energy to let anyone see you as you are tonight.",
- "fetched_at": "2026-11-16T05:42:19.223552+00:00",
+ "reply": "Maybe being with your friend felt like having to be visible when you couldn’t manage that tonight.",
+ "fetched_at": "2026-11-16T06:16:32.768664+00:00",
  "endpoint": "https://backend-lively-butterfly-3415.fly.dev/api/checkin/message",
- "session_id": "a0a8c2a8-0b35-4bd1-aa7b-c5f2b5d277c4",
+ "session_id": "8c1c58d1-4724-495a-be53-43a2965110c9",
  "attempts": [
   {
-   "reply": "You couldn’t bring yourself to be seen as you are tonight.",
-   "session_id": "bf3778cd-ba94-48a3-8ec3-792f0eba069d",
+   "reply": "Maybe being with your friend felt like having to be visible when you couldn’t manage that tonight.",
+   "session_id": "8c1c58d1-4724-495a-be53-43a2965110c9",
    "rejected": null,
    "judge": null,
-   "score": 0.627
-  },
-  {
-   "reply": "You didn’t have the energy to let anyone see you as you are tonight.",
-   "session_id": "a0a8c2a8-0b35-4bd1-aa7b-c5f2b5d277c4",
-   "rejected": null,
-   "judge": null,
-   "score": 0.847
+   "score": 0.95,
+   "judge_error": "openai/gpt-4.1-mini: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err='' || openai/gpt-4.1: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err=''"
   }
  ],
  "note": "reply is verbatim backend output; first line written by the account owner; best of the attempts below (judge score + word overlap), none edited"
