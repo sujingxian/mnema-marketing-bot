@@ -124,14 +124,17 @@ Answer with the digit only."""
 JUDGE_ERROR = ""
 
 
-JUDGE_ENDPOINTS = [
-    ("https://models.github.ai/inference/chat/completions", os.environ.get("MNEMA_JUDGE_MODEL", "openai/gpt-4.1-mini")),
-    ("https://models.inference.ai.azure.com/chat/completions", "gpt-4o-mini"),
-]
+JUDGE_URL = "https://models.github.ai/inference/chat/completions"
+JUDGE_MODELS = [os.environ.get("MNEMA_JUDGE_MODEL", "openai/gpt-4.1-mini"), "openai/gpt-4.1"]
 
 
 def judge(say: str, reply: str) -> int | None:
-    """1–5 from a small model on GitHub Models (free in Actions). None when unavailable."""
+    """1–5 from GitHub Models (free in Actions with `permissions: models: read`). None when unavailable.
+
+    Called through curl exactly like GitHub's own quickstart (-L, vnd.github+json): an earlier
+    urllib version got a bare "OK" body back instead of the completion.
+    """
+    import subprocess
     global JUDGE_ERROR
     JUDGE_ERROR = ""
     tok = os.environ.get("GITHUB_TOKEN")
@@ -139,26 +142,26 @@ def judge(say: str, reply: str) -> int | None:
         JUDGE_ERROR = "no GITHUB_TOKEN"
         return None
     errs = []
-    for url, model in JUDGE_ENDPOINTS:
+    for model in JUDGE_MODELS:
         body = {"model": model, "temperature": 0, "max_tokens": 5,
                 "messages": [{"role": "system", "content": JUDGE_PROMPT},
                              {"role": "user", "content": f"User: {say}\nReply: {reply}"}]}
-        req = urllib.request.Request(url, data=json.dumps(body).encode(), method="POST", headers={
-            "Authorization": f"Bearer {tok}", "Content-Type": "application/json",
-            "Accept": "application/json", "X-GitHub-Api-Version": "2022-11-28"})
-        raw, code = b"", None
+        cmd = ["curl", "-sS", "-L", "-X", "POST", "--max-time", "60",
+               "-H", "Accept: application/vnd.github+json",
+               "-H", f"Authorization: Bearer {tok}",
+               "-H", "X-GitHub-Api-Version: 2022-11-28",
+               "-H", "Content-Type: application/json",
+               JUDGE_URL, "-d", json.dumps(body), "-w", "\n%{http_code}"]
+        r = subprocess.run(cmd, capture_output=True, text=True)
+        out, _, code = r.stdout.rpartition("\n")
         try:
-            with urllib.request.urlopen(req, timeout=60) as r:
-                code, raw = r.status, r.read()
-            txt = json.loads(raw)["choices"][0]["message"]["content"]
+            txt = json.loads(out)["choices"][0]["message"]["content"]
             m = re.search(r"[1-5]", txt)
             if m:
                 return int(m.group(0))
-            errs.append(f"{url}: no digit in {txt!r}")
-        except urllib.error.HTTPError as e:
-            errs.append(f"{url}: HTTP {e.code} {e.read()[:200]!r}")
+            errs.append(f"{model}: no digit in {txt!r}")
         except Exception as e:  # noqa: BLE001
-            errs.append(f"{url}: {code} {e!r} body={raw[:200]!r}")
+            errs.append(f"{model}: HTTP {code} {e!r} body={out[:200]!r} err={r.stderr[:120]!r}")
     JUDGE_ERROR = " || ".join(errs)[:600]
     print(f"[judge] unavailable: {JUDGE_ERROR}")
     return None
