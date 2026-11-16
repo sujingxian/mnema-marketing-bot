@@ -123,10 +123,15 @@ Rate how much the reply ADDS beyond the user's message:
 Answer with the digit only."""
 
 
+JUDGE_ERROR = ""
+
+
 def judge(say: str, reply: str) -> int | None:
     """1–5 from a small model on GitHub Models (free in Actions). None when unavailable."""
+    global JUDGE_ERROR
     tok = os.environ.get("GITHUB_TOKEN")
     if not tok:
+        JUDGE_ERROR = "no GITHUB_TOKEN"
         return None
     body = {"model": JUDGE_MODEL, "temperature": 0,
             "messages": [{"role": "system", "content": JUDGE_PROMPT},
@@ -138,9 +143,12 @@ def judge(say: str, reply: str) -> int | None:
             txt = json.loads(r.read())["choices"][0]["message"]["content"]
         m = re.search(r"[1-5]", txt)
         return int(m.group(0)) if m else None
+    except urllib.error.HTTPError as e:
+        JUDGE_ERROR = f"HTTP {e.code}: {e.read()[:300]!r}"
     except Exception as e:  # noqa: BLE001
-        print(f"[judge] unavailable: {e}")
-        return None
+        JUDGE_ERROR = repr(e)[:300]
+    print(f"[judge] unavailable: {JUDGE_ERROR}")
+    return None
 
 
 def score(say: str, reply: str) -> float:
@@ -167,14 +175,20 @@ def fetch(cid: str, tries: int = 5, dest: Path = CONVOS) -> Path:
         j = judge(say, reply) if why is None else None
         if why is None and j is not None and j < 4:
             why = f"judge {j}/5: mostly restates the user"
+        if why is None and j is None and os.environ.get("MNEMA_REQUIRE_JUDGE", "1") == "1":
+            why = "judge unavailable; not posting unjudged replies"
         sc = round((j or 0) + score(say, reply), 3)
         attempts.append({"reply": reply, "session_id": start["session_id"], "rejected": why,
-                         "judge": j, "score": sc})
+                         "judge": j, "score": sc, **({"judge_error": JUDGE_ERROR} if j is None and why is None else {})})
         if why is None and (best is None or sc > best["score"]):
             best = attempts[-1]
         if best is not None and (best["judge"] == 5 or (best["judge"] is None and best["score"] >= 0.8)):
             break                      # good enough; no need to keep sampling
     if best is None:
+        if dest != CONVOS:              # samples: keep the evidence so failures can be read from the repo
+            dest.mkdir(parents=True, exist_ok=True)
+            (dest / f"{today}-{cid}-FAILED.json").write_text(
+                json.dumps({"id": cid, "say": say, "attempts": attempts}, indent=1, ensure_ascii=False) + "\n")
         raise ConvoError(f"{cid}: no reply passed the gate: {[a['rejected'] for a in attempts]}")
     reply, start = best["reply"], {"session_id": best["session_id"]}
     dest.mkdir(parents=True, exist_ok=True)
