@@ -3,44 +3,44 @@
  "say": "I cancelled plans with my friend again tonight. I said I was tired, but honestly I just didn't want to be seen.",
  "attempts": [
   {
-   "reply": "Maybe you didn’t have the energy to let anyone see how you really were tonight.",
-   "session_id": "9a55bcd2-da06-4819-8f7d-0b3972b47a35",
+   "reply": "You wanted to avoid being looked at, not just the plans. Maybe being around someone felt like too much tonight.",
+   "session_id": "9543c3d9-1a92-4c89-8972-b4387a395e96",
+   "rejected": "judge unavailable; not posting unjudged replies",
+   "judge": null,
+   "score": 0.818,
+   "judge_error": "openai/gpt-4.1-mini: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err='' || openai/gpt-4.1: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err=''"
+  },
+  {
+   "reply": "Maybe being around them felt like too much when you were already feeling exposed. And now you’re carrying the fact that it’s happened again.",
+   "session_id": "230cfe63-7bf5-4763-b2e1-104a5ce04a4a",
+   "rejected": "judge unavailable; not posting unjudged replies",
+   "judge": null,
+   "score": 0.917,
+   "judge_error": "openai/gpt-4.1-mini: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err='' || openai/gpt-4.1: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err=''"
+  },
+  {
+   "reply": "Maybe seeing your friend felt like having to show up and be seen when you couldn’t manage that tonight.",
+   "session_id": "15a9caef-c2ef-4378-ac39-923e23089d8f",
+   "rejected": "judge unavailable; not posting unjudged replies",
+   "judge": null,
+   "score": 0.667,
+   "judge_error": "openai/gpt-4.1-mini: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err='' || openai/gpt-4.1: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err=''"
+  },
+  {
+   "reply": "Maybe you didn’t want your friend to see how you’re doing right now, and “tired” was easier to say.",
+   "session_id": "bee0780f-5435-42ef-bd1e-e467056ba40a",
+   "rejected": "judge unavailable; not posting unjudged replies",
+   "judge": null,
+   "score": 0.667,
+   "judge_error": "openai/gpt-4.1-mini: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err='' || openai/gpt-4.1: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err=''"
+  },
+  {
+   "reply": "Maybe you needed to keep out of view tonight, even from someone you care about. The “again” sounds like it’s weighing on you too.",
+   "session_id": "a21e6d89-b9d5-46d5-b71a-bddb536539f3",
    "rejected": "judge unavailable; not posting unjudged replies",
    "judge": null,
    "score": 0.857,
-   "judge_error": "https://models.github.ai/inference/chat/completions: 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body=b'OK\\r\\n' || https://models.inference.ai.azure.com/chat/completions: None URLError(gaierror(-2, 'Name or service not known')) body=b''"
-  },
-  {
-   "reply": "Maybe being around them felt like too much when you didn’t want to have to show up as yourself.",
-   "session_id": "e27aba1a-b016-491e-9165-9baf2abc8150",
-   "rejected": "judge unavailable; not posting unjudged replies",
-   "judge": null,
-   "score": 0.9,
-   "judge_error": "https://models.github.ai/inference/chat/completions: 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body=b'OK\\r\\n' || https://models.inference.ai.azure.com/chat/completions: None URLError(gaierror(-2, 'Name or service not known')) body=b''"
-  },
-  {
-   "reply": "Maybe “tired” was easier to say than admitting you didn’t want anyone looking too closely tonight.",
-   "session_id": "1ef19229-5b51-4997-aea6-942842928adf",
-   "rejected": "judge unavailable; not posting unjudged replies",
-   "judge": null,
-   "score": 0.727,
-   "judge_error": "https://models.github.ai/inference/chat/completions: 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body=b'OK\\r\\n' || https://models.inference.ai.azure.com/chat/completions: None URLError(gaierror(-2, 'Name or service not known')) body=b''"
-  },
-  {
-   "reply": "Maybe seeing them felt like having to seem okay, and you couldn’t manage that tonight.",
-   "session_id": "05bb97bd-9c64-4e25-bacb-fd94ed7ccdc5",
-   "rejected": "judge unavailable; not posting unjudged replies",
-   "judge": null,
-   "score": 0.889,
-   "judge_error": "https://models.github.ai/inference/chat/completions: 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body=b'OK\\r\\n' || https://models.inference.ai.azure.com/chat/completions: None URLError(gaierror(-2, 'Name or service not known')) body=b''"
-  },
-  {
-   "reply": "Maybe you didn’t have the energy to let anyone look closely at how you’re doing.",
-   "session_id": "4101e93f-fa4c-4bd6-ab4f-d93eae23d27b",
-   "rejected": "judge unavailable; not posting unjudged replies",
-   "judge": null,
-   "score": 1.0,
-   "judge_error": "https://models.github.ai/inference/chat/completions: 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body=b'OK\\r\\n' || https://models.inference.ai.azure.com/chat/completions: None URLError(gaierror(-2, 'Name or service not known')) body=b''"
+   "judge_error": "openai/gpt-4.1-mini: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err='' || openai/gpt-4.1: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err=''"
   }
  ]
 }

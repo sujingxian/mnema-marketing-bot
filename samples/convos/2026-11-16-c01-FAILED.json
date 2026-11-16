@@ -3,44 +3,44 @@
  "say": "My manager said \"good job\" in the meeting but didn't look at me. I've been thinking about it all afternoon.",
  "attempts": [
   {
-   "reply": "Maybe the praise felt hard to trust when he wouldn’t meet your eyes. You’re left wondering what he really meant.",
-   "session_id": "111eaac2-0811-4f0a-a510-2d5420629480",
+   "reply": "Maybe the praise didn’t quite land, because you couldn’t tell whether it was really meant for you.",
+   "session_id": "35be3f4a-ea30-4762-9dcb-64e7203a8436",
    "rejected": "judge unavailable; not posting unjudged replies",
    "judge": null,
    "score": 1.0,
-   "judge_error": "https://models.github.ai/inference/chat/completions: 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body=b'OK\\r\\n' || https://models.inference.ai.azure.com/chat/completions: None URLError(gaierror(-2, 'Name or service not known')) body=b''"
+   "judge_error": "openai/gpt-4.1-mini: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err='' || openai/gpt-4.1: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err=''"
   },
   {
-   "reply": "Maybe the praise didn’t quite feel like it was meant for you, so you’re left wondering what to make of it.",
-   "session_id": "e0826ad9-bfa8-4c9e-8706-3c2c47836797",
+   "reply": "Maybe the praise didn’t quite land because you couldn’t tell whether they really meant it for you.",
+   "session_id": "a5254179-df85-47bf-988a-5a36e4e24945",
    "rejected": "judge unavailable; not posting unjudged replies",
    "judge": null,
    "score": 1.0,
-   "judge_error": "https://models.github.ai/inference/chat/completions: 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body=b'OK\\r\\n' || https://models.inference.ai.azure.com/chat/completions: None URLError(gaierror(-2, 'Name or service not known')) body=b''"
+   "judge_error": "openai/gpt-4.1-mini: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err='' || openai/gpt-4.1: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err=''"
   },
   {
-   "reply": "Maybe the praise felt hard to trust when he wouldn’t meet your eyes. It left you wondering what he really meant.",
-   "session_id": "9e23fe16-4205-404c-b450-1e03ce5bde46",
+   "reply": "Maybe the praise didn’t feel meant for you, so you’ve been left wondering what they really thought.",
+   "session_id": "af386302-e5ee-4de6-bf25-affd4380bf7b",
    "rejected": "judge unavailable; not posting unjudged replies",
    "judge": null,
    "score": 1.0,
-   "judge_error": "https://models.github.ai/inference/chat/completions: 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body=b'OK\\r\\n' || https://models.inference.ai.azure.com/chat/completions: None URLError(gaierror(-2, 'Name or service not known')) body=b''"
+   "judge_error": "openai/gpt-4.1-mini: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err='' || openai/gpt-4.1: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err=''"
   },
   {
-   "reply": "Maybe the praise felt oddly distant, like it didn’t quite reach you. You were left wondering whether they really meant it.",
-   "session_id": "b64b7031-428d-445c-852c-b626a7979df2",
+   "reply": "Maybe the praise didn’t quite land because you couldn’t tell whether it was really meant for you.",
+   "session_id": "193bcf5d-9fa3-4263-b950-5eaf2f7297d9",
    "rejected": "judge unavailable; not posting unjudged replies",
    "judge": null,
    "score": 1.0,
-   "judge_error": "https://models.github.ai/inference/chat/completions: 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body=b'OK\\r\\n' || https://models.inference.ai.azure.com/chat/completions: None URLError(gaierror(-2, 'Name or service not known')) body=b''"
+   "judge_error": "openai/gpt-4.1-mini: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err='' || openai/gpt-4.1: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err=''"
   },
   {
-   "reply": "Maybe you needed the praise to feel like it was really meant for you, not just said aloud.",
-   "session_id": "b0c04cef-9614-43ab-aeed-8b3d197197d9",
+   "reply": "Maybe the praise felt a little hollow because you couldn’t tell if he meant it for you. You’ve been left trying to read that one small moment.",
+   "session_id": "7fea9bce-a66b-46b4-b94b-5071e1fe5e90",
    "rejected": "judge unavailable; not posting unjudged replies",
    "judge": null,
-   "score": 0.833,
-   "judge_error": "https://models.github.ai/inference/chat/completions: 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body=b'OK\\r\\n' || https://models.inference.ai.azure.com/chat/completions: None URLError(gaierror(-2, 'Name or service not known')) body=b''"
+   "score": 1.0,
+   "judge_error": "openai/gpt-4.1-mini: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err='' || openai/gpt-4.1: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err=''"
   }
  ]
 }
