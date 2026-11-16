@@ -3,39 +3,44 @@
  "say": "My manager said \"good job\" in the meeting but didn't look at me. I've been thinking about it all afternoon.",
  "attempts": [
   {
-   "reply": "Maybe the praise didn’t feel like it was really meant for you, so you’re left wondering what to make of it.",
-   "session_id": "fbbc0cfb-6eca-4b92-98c4-40c2f729b571",
+   "reply": "Maybe you wanted to feel seen, not just hear the words.",
+   "session_id": "20ec01c3-9d0e-4a53-a129-260952b274fd",
    "rejected": "judge unavailable; not posting unjudged replies",
    "judge": null,
-   "score": 1.0
+   "score": 0.96,
+   "judge_error": "JSONDecodeError('Expecting value: line 1 column 1 (char 0)')"
   },
   {
-   "reply": "Maybe the praise felt hard to trust when they didn’t meet your eyes.",
-   "session_id": "a50c7186-2453-4519-b71d-d71b68b4fe1d",
+   "reply": "Maybe the praise didn’t quite reach you without that small sign they meant it for you.",
+   "session_id": "9599888d-13a6-40a2-9f38-c4eb04119bc2",
    "rejected": "judge unavailable; not posting unjudged replies",
    "judge": null,
-   "score": 0.98
+   "score": 1.0,
+   "judge_error": "JSONDecodeError('Expecting value: line 1 column 1 (char 0)')"
   },
   {
-   "reply": "Maybe the praise felt a little hollow when he wouldn’t meet your eyes, and now you’re wondering what he really meant.",
-   "session_id": "6c5cae7f-9db3-4234-b8cb-f1eeb2c7a385",
+   "reply": "Maybe the praise felt hard to trust when he wouldn’t meet your eyes. You were left wondering whether he really meant it.",
+   "session_id": "5389cf63-9bd1-4a77-8bd9-2c4d0540b653",
    "rejected": "judge unavailable; not posting unjudged replies",
    "judge": null,
-   "score": 1.0
+   "score": 1.0,
+   "judge_error": "JSONDecodeError('Expecting value: line 1 column 1 (char 0)')"
   },
   {
-   "reply": "Maybe the praise didn’t quite land because you couldn’t tell if it was really meant for you.",
-   "session_id": "631928df-25a7-46c6-8d35-000c743afaba",
+   "reply": "Maybe you wanted to feel personally recognized, and the praise didn’t quite land without that.",
+   "session_id": "2176f3d1-fc78-4009-82a9-05a4fe013db4",
    "rejected": "judge unavailable; not posting unjudged replies",
    "judge": null,
-   "score": 1.0
+   "score": 1.0,
+   "judge_error": "JSONDecodeError('Expecting value: line 1 column 1 (char 0)')"
   },
   {
-   "reply": "Maybe the praise felt a little hollow without him actually acknowledging you. You’ve been left wondering what he meant by it.",
-   "session_id": "19960755-53cb-4c9d-a027-9f1f62b52fa1",
+   "reply": "Maybe the praise felt hard to trust when he wouldn’t meet your eyes, so you’re still wondering what he really meant.",
+   "session_id": "ecc78c2f-ed1e-4247-b047-78ede0605475",
    "rejected": "judge unavailable; not posting unjudged replies",
    "judge": null,
-   "score": 1.0
+   "score": 1.0,
+   "judge_error": "JSONDecodeError('Expecting value: line 1 column 1 (char 0)')"
   }
  ]
 }
