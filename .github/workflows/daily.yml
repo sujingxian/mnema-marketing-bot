@@ -16,6 +16,7 @@ on:
 
 permissions:
   contents: write
+  models: read
 
 concurrency:
   group: daily-post
@@ -43,6 +44,7 @@ jobs:
         env:
           BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
           MNEMA_BOT_LOGIN: ${{ secrets.MNEMA_BOT_LOGIN }}
+          GITHUB_TOKEN: ${{ github.token }}
           MNEMA_VOICE: am_michael
           MODE: ${{ github.event.inputs.mode || 'run' }}
           INDEX: ${{ github.event.inputs.index }}

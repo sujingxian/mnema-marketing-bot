@@ -80,7 +80,22 @@ def _token() -> str:
     raise ConvoError(f"login failed: HTTP {code} {str(data)[:200]}")
 
 
-def gate(reply: str) -> str | None:
+STOP = set("""a an the i i'm im me my you your you're it it's its is was were be been to of and or but so
+that this in on at for with about just not no now then than as if when what why how do did does dont don't
+didn't feel felt feeling really still all some one more like""".split())
+
+
+def _content(text: str) -> set[str]:
+    return {w for w in re.findall(r"[a-z']+", text.lower().replace("’", "'")) if w not in STOP and len(w) > 2}
+
+
+def overlap(say: str, reply: str) -> float:
+    """Share of the reply's content words that were already in the user's line (0 = all new)."""
+    r = _content(reply)
+    return len(r & _content(say)) / len(r) if r else 1.0
+
+
+def gate(reply: str, say: str = "") -> str | None:
     """Return a reason to reject, or None if the reply can be posted as-is."""
     words = len(reply.split())
     if words < 10:
@@ -91,14 +106,55 @@ def gate(reply: str) -> str | None:
         return "canned opener"
     if "mnema" in reply.lower():
         return "mentions the app"
+    if say and overlap(say, reply) > 0.34:
+        return f"restates the user ({overlap(say, reply):.0%} reused words)"
     return None
 
 
-def fetch(cid: str, tries: int = 3, dest: Path = CONVOS) -> Path:
+JUDGE_URL = "https://models.github.ai/inference/chat/completions"
+JUDGE_MODEL = os.environ.get("MNEMA_JUDGE_MODEL", "openai/gpt-4.1-mini")
+JUDGE_PROMPT = """You rate replies from a journaling companion. The user wrote one message; the companion replied.
+Rate how much the reply ADDS beyond the user's message:
+1 = restates or summarises what the user said, in other words
+2 = mostly restatement with a generic comment
+3 = a small new angle, but predictable
+4 = names something specific the user did not say (what stung, what it meant, what they were protecting)
+5 = a sharp, specific, non-obvious insight a thoughtful friend would offer
+Answer with the digit only."""
+
+
+def judge(say: str, reply: str) -> int | None:
+    """1–5 from a small model on GitHub Models (free in Actions). None when unavailable."""
+    tok = os.environ.get("GITHUB_TOKEN")
+    if not tok:
+        return None
+    body = {"model": JUDGE_MODEL, "temperature": 0,
+            "messages": [{"role": "system", "content": JUDGE_PROMPT},
+                         {"role": "user", "content": f"User: {say}\nReply: {reply}"}]}
+    req = urllib.request.Request(JUDGE_URL, data=json.dumps(body).encode(), method="POST",
+                                 headers={"Authorization": f"Bearer {tok}", "Content-Type": "application/json"})
+    try:
+        with urllib.request.urlopen(req, timeout=60) as r:
+            txt = json.loads(r.read())["choices"][0]["message"]["content"]
+        m = re.search(r"[1-5]", txt)
+        return int(m.group(0)) if m else None
+    except Exception as e:  # noqa: BLE001
+        print(f"[judge] unavailable: {e}")
+        return None
+
+
+def score(say: str, reply: str) -> float:
+    """Higher is better: new words dominate; mild preference for 15–45 words."""
+    n = len(reply.split())
+    return (1 - overlap(say, reply)) - (0.004 * max(0, n - 45)) - (0.01 * max(0, 15 - n))
+
+
+def fetch(cid: str, tries: int = 5, dest: Path = CONVOS) -> Path:
     say = dict(scenarios())[cid]
     token = _token()
     today = dt.datetime.now(dt.timezone.utc).date().isoformat()
     attempts = []
+    best = None
     for _ in range(tries):
         code, start = _req("/checkin/start", {"language": "en", "with_opening": False, "today": today}, token)
         if code != 200:
@@ -107,16 +163,25 @@ def fetch(cid: str, tries: int = 3, dest: Path = CONVOS) -> Path:
         if code != 200:
             raise ConvoError(f"/checkin/message HTTP {code} {str(msg)[:200]}")
         reply = (msg.get("reply") or "").strip()
-        why = gate(reply)
-        attempts.append({"reply": reply, "rejected": why})
-        if why is None:
-            break
-    else:
-        raise ConvoError(f"{cid}: no reply passed the gate: {attempts}")
+        why = gate(reply, say)
+        j = judge(say, reply) if why is None else None
+        if why is None and j is not None and j < 4:
+            why = f"judge {j}/5: mostly restates the user"
+        sc = round((j or 0) + score(say, reply), 3)
+        attempts.append({"reply": reply, "session_id": start["session_id"], "rejected": why,
+                         "judge": j, "score": sc})
+        if why is None and (best is None or sc > best["score"]):
+            best = attempts[-1]
+        if best is not None and (best["judge"] == 5 or (best["judge"] is None and best["score"] >= 0.8)):
+            break                      # good enough; no need to keep sampling
+    if best is None:
+        raise ConvoError(f"{cid}: no reply passed the gate: {[a['rejected'] for a in attempts]}")
+    reply, start = best["reply"], {"session_id": best["session_id"]}
     dest.mkdir(parents=True, exist_ok=True)
     rec = {"id": cid, "say": say, "reply": reply, "fetched_at": dt.datetime.now(dt.timezone.utc).isoformat(),
            "endpoint": API + "/checkin/message", "session_id": start["session_id"], "attempts": attempts,
-           "note": "reply is verbatim backend output; first line written by the account owner"}
+           "note": ("reply is verbatim backend output; first line written by the account owner; "
+                    "best of the attempts below (judge score + word overlap), none edited")}
     p = dest / f"{today}-{cid}.json"
     p.write_text(json.dumps(rec, indent=1, ensure_ascii=False) + "\n")
     return p

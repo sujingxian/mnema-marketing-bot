@@ -7,6 +7,9 @@ saved next to the video in `content/convos/`. Only the first line is written her
 Rules: everyday, specific, first person, spoken register, ≤ 40 words. No crisis topics (self-harm,
 suicide, abuse, eating, grief): those need a human, not a promo video.
 
+Never use a line that also appears as an example in the backend's `diary_companion.md`: the model could
+echo the example reply, and the video would then show our words labelled as Mnema's.
+
 - c01 | My manager said "good job" in the meeting but didn't look at me. I've been thinking about it all afternoon.
 - c02 | I cancelled plans with my friend again tonight. I said I was tired, but honestly I just didn't want to be seen.
 - c03 | My mum called to ask if I'm eating properly and I snapped at her. She was just being nice.
