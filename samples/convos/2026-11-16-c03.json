@@ -1,15 +1,25 @@
 {
  "id": "c03",
  "say": "My mum called to ask if I'm eating properly and I snapped at her. She was just being nice.",
- "reply": "You knew she meant well, and now you feel bad about snapping.",
- "fetched_at": "2026-11-16T04:53:29.415397+00:00",
+ "reply": "You knew she meant well, and now the sharpness is sitting with you.",
+ "fetched_at": "2026-11-16T05:42:28.406780+00:00",
  "endpoint": "https://backend-lively-butterfly-3415.fly.dev/api/checkin/message",
- "session_id": "aea58509-cef9-4106-90a1-963b6d7bdf6c",
+ "session_id": "8d1dfbdd-bffe-4ddd-95be-d456c14984dd",
  "attempts": [
   {
-   "reply": "You knew she meant well, and now you feel bad about snapping.",
-   "rejected": null
+   "reply": "You knew she meant well, and now you’re probably feeling bad about snapping at her.",
+   "session_id": "ac3ba164-2781-4da4-bb9f-d2f6245eb6b9",
+   "rejected": null,
+   "judge": null,
+   "score": 0.75
+  },
+  {
+   "reply": "You knew she meant well, and now the sharpness is sitting with you.",
+   "session_id": "8d1dfbdd-bffe-4ddd-95be-d456c14984dd",
+   "rejected": null,
+   "judge": null,
+   "score": 0.813
   }
  ],
- "note": "reply is verbatim backend output; first line written by the account owner"
+ "note": "reply is verbatim backend output; first line written by the account owner; best of the attempts below (judge score + word overlap), none edited"
 }
