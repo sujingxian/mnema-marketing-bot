@@ -111,8 +111,6 @@ def gate(reply: str, say: str = "") -> str | None:
     return None
 
 
-JUDGE_URL = "https://models.github.ai/inference/chat/completions"
-JUDGE_MODEL = os.environ.get("MNEMA_JUDGE_MODEL", "openai/gpt-4.1-mini")
 JUDGE_PROMPT = """You rate replies from a journaling companion. The user wrote one message; the companion replied.
 Rate how much the reply ADDS beyond the user's message:
 1 = restates or summarises what the user said, in other words
@@ -126,6 +124,12 @@ Answer with the digit only."""
 JUDGE_ERROR = ""
 
 
+JUDGE_ENDPOINTS = [
+    ("https://models.github.ai/inference/chat/completions", os.environ.get("MNEMA_JUDGE_MODEL", "openai/gpt-4.1-mini")),
+    ("https://models.inference.ai.azure.com/chat/completions", "gpt-4o-mini"),
+]
+
+
 def judge(say: str, reply: str) -> int | None:
     """1–5 from a small model on GitHub Models (free in Actions). None when unavailable."""
     global JUDGE_ERROR
@@ -134,20 +138,28 @@ def judge(say: str, reply: str) -> int | None:
     if not tok:
         JUDGE_ERROR = "no GITHUB_TOKEN"
         return None
-    body = {"model": JUDGE_MODEL, "temperature": 0,
-            "messages": [{"role": "system", "content": JUDGE_PROMPT},
-                         {"role": "user", "content": f"User: {say}\nReply: {reply}"}]}
-    req = urllib.request.Request(JUDGE_URL, data=json.dumps(body).encode(), method="POST",
-                                 headers={"Authorization": f"Bearer {tok}", "Content-Type": "application/json"})
-    try:
-        with urllib.request.urlopen(req, timeout=60) as r:
-            txt = json.loads(r.read())["choices"][0]["message"]["content"]
-        m = re.search(r"[1-5]", txt)
-        return int(m.group(0)) if m else None
-    except urllib.error.HTTPError as e:
-        JUDGE_ERROR = f"HTTP {e.code}: {e.read()[:300]!r}"
-    except Exception as e:  # noqa: BLE001
-        JUDGE_ERROR = repr(e)[:300]
+    errs = []
+    for url, model in JUDGE_ENDPOINTS:
+        body = {"model": model, "temperature": 0, "max_tokens": 5,
+                "messages": [{"role": "system", "content": JUDGE_PROMPT},
+                             {"role": "user", "content": f"User: {say}\nReply: {reply}"}]}
+        req = urllib.request.Request(url, data=json.dumps(body).encode(), method="POST", headers={
+            "Authorization": f"Bearer {tok}", "Content-Type": "application/json",
+            "Accept": "application/json", "X-GitHub-Api-Version": "2022-11-28"})
+        raw, code = b"", None
+        try:
+            with urllib.request.urlopen(req, timeout=60) as r:
+                code, raw = r.status, r.read()
+            txt = json.loads(raw)["choices"][0]["message"]["content"]
+            m = re.search(r"[1-5]", txt)
+            if m:
+                return int(m.group(0))
+            errs.append(f"{url}: no digit in {txt!r}")
+        except urllib.error.HTTPError as e:
+            errs.append(f"{url}: HTTP {e.code} {e.read()[:200]!r}")
+        except Exception as e:  # noqa: BLE001
+            errs.append(f"{url}: {code} {e!r} body={raw[:200]!r}")
+    JUDGE_ERROR = " || ".join(errs)[:600]
     print(f"[judge] unavailable: {JUDGE_ERROR}")
     return None
 
