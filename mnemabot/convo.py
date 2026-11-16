@@ -191,9 +191,16 @@ def fetch(cid: str, tries: int = 5, dest: Path = CONVOS) -> Path:
         j = judge(say, reply) if why is None else None
         if why is None and j is not None and j < 4:
             why = f"judge {j}/5: mostly restates the user"
-        if why is None and j is None and os.environ.get("MNEMA_REQUIRE_JUDGE", "1") == "1":
-            why = "judge unavailable; not posting unjudged replies"
-        sc = round((j or 0) + score(say, reply), 3)
+        if why is None and j is None:
+            # No judge (GitHub Models answered a bare "OK" in Actions, 2026-11-16). Fallback rule from
+            # 15 real replies: "Maybe …" replies name the unsaid layer; replies that open with "You
+            # knew / You wanted / You didn't…" hand the user's story back. Drop the latter.
+            if re.match(r"^\s*you\b", reply, re.I):
+                why = "no judge; opens by handing their story back ('You …')"
+            elif os.environ.get("MNEMA_REQUIRE_JUDGE", "0") == "1":
+                why = "judge unavailable; not posting unjudged replies"
+        sc = round((j or 0) + score(say, reply)
+                   + (0.2 if j is None and re.match(r"^\s*(maybe|perhaps)\b", reply, re.I) else 0), 3)
         attempts.append({"reply": reply, "session_id": start["session_id"], "rejected": why,
                          "judge": j, "score": sc, **({"judge_error": JUDGE_ERROR} if j is None else {})})
         if why is None and (best is None or sc > best["score"]):
