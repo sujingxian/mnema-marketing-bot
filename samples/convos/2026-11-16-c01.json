@@ -1,0 +1,15 @@
+{
+ "id": "c01",
+ "say": "My manager said \"good job\" in the meeting but didn't look at me. I've been thinking about it all afternoon.",
+ "reply": "The praise was there, but it didn’t quite feel directed at you. No wonder your mind keeps circling back to it.",
+ "fetched_at": "2026-11-16T04:53:12.544713+00:00",
+ "endpoint": "https://backend-lively-butterfly-3415.fly.dev/api/checkin/message",
+ "session_id": "77ec4ed0-f925-4120-ab56-339414549d74",
+ "attempts": [
+  {
+   "reply": "The praise was there, but it didn’t quite feel directed at you. No wonder your mind keeps circling back to it.",
+   "rejected": null
+  }
+ ],
+ "note": "reply is verbatim backend output; first line written by the account owner"
+}

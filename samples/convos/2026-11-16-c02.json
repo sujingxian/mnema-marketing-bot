@@ -1,0 +1,15 @@
+{
+ "id": "c02",
+ "say": "I cancelled plans with my friend again tonight. I said I was tired, but honestly I just didn't want to be seen.",
+ "reply": "You wanted to disappear from view for a while, and being around someone felt like too much tonight.",
+ "fetched_at": "2026-11-16T04:53:21.263150+00:00",
+ "endpoint": "https://backend-lively-butterfly-3415.fly.dev/api/checkin/message",
+ "session_id": "2f3f2d0d-13d0-4b38-97af-f00f74afdec2",
+ "attempts": [
+  {
+   "reply": "You wanted to disappear from view for a while, and being around someone felt like too much tonight.",
+   "rejected": null
+  }
+ ],
+ "note": "reply is verbatim backend output; first line written by the account owner"
+}

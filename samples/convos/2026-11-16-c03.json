@@ -1,0 +1,15 @@
+{
+ "id": "c03",
+ "say": "My mum called to ask if I'm eating properly and I snapped at her. She was just being nice.",
+ "reply": "You knew she meant well, and now you feel bad about snapping.",
+ "fetched_at": "2026-11-16T04:53:29.415397+00:00",
+ "endpoint": "https://backend-lively-butterfly-3415.fly.dev/api/checkin/message",
+ "session_id": "aea58509-cef9-4106-90a1-963b6d7bdf6c",
+ "attempts": [
+  {
+   "reply": "You knew she meant well, and now you feel bad about snapping.",
+   "rejected": null
+  }
+ ],
+ "note": "reply is verbatim backend output; first line written by the account owner"
+}
