@@ -1,0 +1,41 @@
+{
+ "id": "c02",
+ "say": "I cancelled plans with my friend again tonight. I said I was tired, but honestly I just didn't want to be seen.",
+ "attempts": [
+  {
+   "reply": "Maybe even being with a friend felt like having to show up and be visible, and you couldn’t manage that tonight.",
+   "session_id": "13869b24-b085-4031-bb1e-e8d9525066c7",
+   "rejected": "judge unavailable; not posting unjudged replies",
+   "judge": null,
+   "score": 0.8
+  },
+  {
+   "reply": "Maybe being seen felt like more than you could manage tonight, even by someone you care about.",
+   "session_id": "0c296af2-e281-4bd9-8463-14a80bbf7696",
+   "rejected": "judge unavailable; not posting unjudged replies",
+   "judge": null,
+   "score": 0.778
+  },
+  {
+   "reply": "Maybe you needed to be out of view tonight, not just out of plans.",
+   "session_id": "183ec690-3681-4137-99e3-cbeadd0eb759",
+   "rejected": "judge unavailable; not posting unjudged replies",
+   "judge": null,
+   "score": 0.657
+  },
+  {
+   "reply": "Maybe you didn’t have the energy to be around anyone, but being seen felt like too much in itself.",
+   "session_id": "b042d327-11d0-4a66-a1e5-aea35a5b5958",
+   "rejected": "judge unavailable; not posting unjudged replies",
+   "judge": null,
+   "score": 0.9
+  },
+  {
+   "reply": "Maybe you didn’t have the energy to let anyone see how you’re doing.",
+   "session_id": "38dbab9e-0469-40db-9d88-e83fa50e9843",
+   "rejected": "judge unavailable; not posting unjudged replies",
+   "judge": null,
+   "score": 0.98
+  }
+ ]
+}

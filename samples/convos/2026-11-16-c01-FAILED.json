@@ -1,0 +1,41 @@
+{
+ "id": "c01",
+ "say": "My manager said \"good job\" in the meeting but didn't look at me. I've been thinking about it all afternoon.",
+ "attempts": [
+  {
+   "reply": "Maybe the praise didn’t feel like it was really meant for you, so you’re left wondering what to make of it.",
+   "session_id": "fbbc0cfb-6eca-4b92-98c4-40c2f729b571",
+   "rejected": "judge unavailable; not posting unjudged replies",
+   "judge": null,
+   "score": 1.0
+  },
+  {
+   "reply": "Maybe the praise felt hard to trust when they didn’t meet your eyes.",
+   "session_id": "a50c7186-2453-4519-b71d-d71b68b4fe1d",
+   "rejected": "judge unavailable; not posting unjudged replies",
+   "judge": null,
+   "score": 0.98
+  },
+  {
+   "reply": "Maybe the praise felt a little hollow when he wouldn’t meet your eyes, and now you’re wondering what he really meant.",
+   "session_id": "6c5cae7f-9db3-4234-b8cb-f1eeb2c7a385",
+   "rejected": "judge unavailable; not posting unjudged replies",
+   "judge": null,
+   "score": 1.0
+  },
+  {
+   "reply": "Maybe the praise didn’t quite land because you couldn’t tell if it was really meant for you.",
+   "session_id": "631928df-25a7-46c6-8d35-000c743afaba",
+   "rejected": "judge unavailable; not posting unjudged replies",
+   "judge": null,
+   "score": 1.0
+  },
+  {
+   "reply": "Maybe the praise felt a little hollow without him actually acknowledging you. You’ve been left wondering what he meant by it.",
+   "session_id": "19960755-53cb-4c9d-a027-9f1f62b52fa1",
+   "rejected": "judge unavailable; not posting unjudged replies",
+   "judge": null,
+   "score": 1.0
+  }
+ ]
+}
