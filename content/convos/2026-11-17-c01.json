@@ -1,0 +1,19 @@
+{
+ "id": "c01",
+ "say": "My manager said \"good job\" in the meeting but didn't look at me. I've been thinking about it all afternoon.",
+ "reply": "Maybe the praise didn’t quite land because you couldn’t tell whether it was really meant for you.",
+ "fetched_at": "2026-11-17T02:57:30.923355+00:00",
+ "endpoint": "https://backend-lively-butterfly-3415.fly.dev/api/checkin/message",
+ "session_id": "b6a2281d-6b58-4f2f-a7c1-73c4428a412a",
+ "attempts": [
+  {
+   "reply": "Maybe the praise didn’t quite land because you couldn’t tell whether it was really meant for you.",
+   "session_id": "b6a2281d-6b58-4f2f-a7c1-73c4428a412a",
+   "rejected": null,
+   "judge": null,
+   "score": 1.2,
+   "judge_error": "openai/gpt-4.1-mini: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err='' || openai/gpt-4.1: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err=''"
+  }
+ ],
+ "note": "reply is verbatim backend output; first line written by the account owner; best of the attempts below (judge score + word overlap), none edited"
+}
