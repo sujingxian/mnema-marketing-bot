@@ -1,5 +1,5 @@
 {
- "next_index": 16,
+ "next_index": 17,
  "history": [
   {
    "index": 0,
@@ -921,6 +921,70 @@
      "slot": 1,
      "ok": true,
      "post_id": "6afa476c60a910801c577b94"
+    }
+   ]
+  },
+  {
+   "index": 16,
+   "slug": "emotion-21-self-doubt",
+   "post_day": "2026-11-17",
+   "file": "2026-11-17-emotion-21-self-doubt-f2.mp4",
+   "due": "2026-11-17T13:00:00+00:00",
+   "scheduled_at": "2026-11-17T02:57:18.176423+00:00",
+   "videos": [
+    {
+     "format": "F2",
+     "slot": 0,
+     "file": "2026-11-17-emotion-21-self-doubt-f2.mp4",
+     "due": "2026-11-17T13:00:00+00:00",
+     "slug": "emotion-21-self-doubt",
+     "url": "https://raw.githubusercontent.com/sujingxian/mnema-marketing-bot/main/videos/2026-11-17-emotion-21-self-doubt-f2.mp4"
+    },
+    {
+     "format": "convo",
+     "slot": 1,
+     "file": "2026-11-17-convo-c01.mp4",
+     "due": "2026-11-17T18:00:00+00:00",
+     "slug": "convo-c01",
+     "record": "content/convos/2026-11-17-c01.json",
+     "url": "https://raw.githubusercontent.com/sujingxian/mnema-marketing-bot/main/videos/2026-11-17-convo-c01.mp4"
+    }
+   ],
+   "results": [
+    {
+     "service": "youtube",
+     "format": "F2",
+     "slot": 0,
+     "ok": true,
+     "post_id": "6afbc2a74b26315855b7ffe4"
+    },
+    {
+     "service": "youtube",
+     "format": "convo",
+     "slot": 1,
+     "ok": true,
+     "post_id": "6afbc2a84b26315855b80036"
+    },
+    {
+     "service": "tiktok",
+     "format": "F2",
+     "slot": 0,
+     "ok": true,
+     "post_id": "6afbc2a8797935b975d8ddd3"
+    },
+    {
+     "service": "tiktok",
+     "format": "convo",
+     "slot": 1,
+     "ok": true,
+     "post_id": "6afbc2a9f83aaca8f3a4b5ac"
+    },
+    {
+     "service": "instagram",
+     "format": "convo",
+     "slot": 1,
+     "ok": true,
+     "post_id": "6afbc2a93e42cd001e490501"
     }
    ]
   }
