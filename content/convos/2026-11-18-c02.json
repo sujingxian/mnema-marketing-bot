@@ -1,0 +1,27 @@
+{
+ "id": "c02",
+ "say": "I cancelled plans with my friend again tonight. I said I was tired, but honestly I just didn't want to be seen.",
+ "reply": "Maybe being around them felt like too much when you already didn’t want anyone looking too closely.",
+ "fetched_at": "2026-11-18T02:27:13.727143+00:00",
+ "endpoint": "https://backend-lively-butterfly-3415.fly.dev/api/checkin/message",
+ "session_id": "1f18935f-05d1-4f90-a55c-2f7188582a04",
+ "attempts": [
+  {
+   "reply": "Maybe you didn’t want your friend to see how you’re really doing tonight.",
+   "session_id": "bdfab8a9-cb7d-419e-8325-30c633456987",
+   "rejected": "restates the user (50% reused words)",
+   "judge": null,
+   "score": 0.68,
+   "judge_error": ""
+  },
+  {
+   "reply": "Maybe being around them felt like too much when you already didn’t want anyone looking too closely.",
+   "session_id": "1f18935f-05d1-4f90-a55c-2f7188582a04",
+   "rejected": null,
+   "judge": null,
+   "score": 1.109,
+   "judge_error": "openai/gpt-4.1-mini: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err='' || openai/gpt-4.1: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err=''"
+  }
+ ],
+ "note": "reply is verbatim backend output; first line written by the account owner; best of the attempts below (judge score + word overlap), none edited"
+}
