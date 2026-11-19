@@ -1,0 +1,27 @@
+{
+ "id": "c03",
+ "say": "My mum called to ask if I'm eating properly and I snapped at her. She was just being nice.",
+ "reply": "Maybe you were already worn thin, and her concern landed like one more thing to answer for. Now you’re left feeling bad because she didn’t deserve the sharpness.",
+ "fetched_at": "2026-11-19T01:53:55.736879+00:00",
+ "endpoint": "https://backend-lively-butterfly-3415.fly.dev/api/checkin/message",
+ "session_id": "b66110a3-9528-4562-a340-18542fed90ae",
+ "attempts": [
+  {
+   "reply": "You knew she meant well, but maybe you were too worn down to take another check-in.",
+   "session_id": "d60c00d2-dbb5-4c50-a30a-975408e813de",
+   "rejected": "no judge; opens by handing their story back ('You …')",
+   "judge": null,
+   "score": 0.909,
+   "judge_error": "openai/gpt-4.1-mini: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err='' || openai/gpt-4.1: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err=''"
+  },
+  {
+   "reply": "Maybe you were already worn thin, and her concern landed like one more thing to answer for. Now you’re left feeling bad because she didn’t deserve the sharpness.",
+   "session_id": "b66110a3-9528-4562-a340-18542fed90ae",
+   "rejected": null,
+   "judge": null,
+   "score": 1.067,
+   "judge_error": "openai/gpt-4.1-mini: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err='' || openai/gpt-4.1: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err=''"
+  }
+ ],
+ "note": "reply is verbatim backend output; first line written by the account owner; best of the attempts below (judge score + word overlap), none edited"
+}
