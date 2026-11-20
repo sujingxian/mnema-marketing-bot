@@ -1,0 +1,19 @@
+{
+ "id": "c04",
+ "say": "I got the job offer I wanted and I feel weirdly flat about it.",
+ "reply": "Maybe you expected to feel a rush of relief, and instead it hasn’t really landed yet.",
+ "fetched_at": "2026-11-20T01:47:46.370856+00:00",
+ "endpoint": "https://backend-lively-butterfly-3415.fly.dev/api/checkin/message",
+ "session_id": "e1d6d0a1-ad44-40a3-9673-4f83d72aa7c5",
+ "attempts": [
+  {
+   "reply": "Maybe you expected to feel a rush of relief, and instead it hasn’t really landed yet.",
+   "session_id": "e1d6d0a1-ad44-40a3-9673-4f83d72aa7c5",
+   "rejected": null,
+   "judge": null,
+   "score": 1.2,
+   "judge_error": "openai/gpt-4.1-mini: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err='' || openai/gpt-4.1: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err=''"
+  }
+ ],
+ "note": "reply is verbatim backend output; first line written by the account owner; best of the attempts below (judge score + word overlap), none edited"
+}
