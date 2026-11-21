@@ -1,5 +1,5 @@
 {
- "next_index": 20,
+ "next_index": 21,
  "history": [
   {
    "index": 0,
@@ -1177,6 +1177,47 @@
      "slot": 1,
      "ok": true,
      "post_id": "6affa6cb4c1afd05dee23c66"
+    }
+   ]
+  },
+  {
+   "index": 20,
+   "slug": "emotion-01-fear",
+   "post_day": "2026-11-21",
+   "file": "2026-11-21-emotion-01-fear-f2.mp4",
+   "due": "2026-11-21T13:00:00+00:00",
+   "scheduled_at": "2026-11-21T01:31:15.683990+00:00",
+   "videos": [
+    {
+     "format": "F2",
+     "slot": 0,
+     "file": "2026-11-21-emotion-01-fear-f2.mp4",
+     "due": "2026-11-21T13:00:00+00:00",
+     "slug": "emotion-01-fear",
+     "url": "https://raw.githubusercontent.com/sujingxian/mnema-marketing-bot/main/videos/2026-11-21-emotion-01-fear-f2.mp4"
+    }
+   ],
+   "results": [
+    {
+     "service": "youtube",
+     "format": "F2",
+     "slot": 0,
+     "ok": true,
+     "post_id": "6b00f47f9ffbc8503cecad2d"
+    },
+    {
+     "service": "tiktok",
+     "format": "F2",
+     "slot": 0,
+     "ok": true,
+     "post_id": "6b00f47f9ffbc8503cecad5f"
+    },
+    {
+     "service": "instagram",
+     "format": "F2",
+     "slot": 0,
+     "ok": true,
+     "post_id": "6b00f4805e993799d8422e67"
     }
    ]
   }
