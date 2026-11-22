@@ -48,6 +48,10 @@ required — they go into the captions — but they are not on screen. So:
 - **TURN** is the short reframe right after it, ≤ 10 words ("You're not a coward.").
 - **LINE** is the payoff the viewer would screenshot, ≤ 16 words.
 
+**Week-2 signal (2026-11-23):** the best post so far — 749 views, 18 likes — was "If you slept nine
+hours and still feel like this". Hooks that name a body state or a clock time ("jaw tight since
+Monday", "1am, replaying a sentence") beat hooks that name an emotion. Prefer them.
+
 ## Hook rotation
 
 A misread flip · B sentence completion · C scene call-out · D correct a phrase · E question.

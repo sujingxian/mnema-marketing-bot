@@ -11,7 +11,7 @@ from PIL import Image, ImageDraw
 
 from .. import gfx
 from ..emotion import _clean
-from ..gfx import H, W, fit_text, mono, play, text_block
+from ..gfx import H, W, fit_text, mono, play, text_block  # noqa: F401
 
 INK = (18, 17, 16)
 PAPER = (246, 243, 238)
@@ -55,7 +55,9 @@ def build(item: dict, out: Path, music: Path, workdir: Path | None = None) -> Pa
         if item.get(k):
             txt = _clean(item[k])
             screens.append((_screen(txt, label, dot), _secs(txt)))
-    duration = sum(s for _, s in screens)
+    beats_end = sum(s for _, s in screens)
+    duration = beats_end + gfx.CTA_DUR
+    cta_bg = Image.new("RGBA", (W, H), INK + (255,))
 
     def frame(t: float) -> Image.Image:
         acc = 0.0
@@ -63,6 +65,8 @@ def build(item: dict, out: Path, music: Path, workdir: Path | None = None) -> Pa
             acc += s
             if t < acc:
                 return img
-        return screens[-1][0]
+        img = cta_bg.copy()
+        gfx.cta_card(img, t, beats_end, lead="Feel this a lot?")
+        return img
 
     return gfx.encode(frame, duration, out, music, crf=18)

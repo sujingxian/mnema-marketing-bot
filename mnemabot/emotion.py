@@ -210,21 +210,22 @@ def build(item: dict, out: Path, audio: Path) -> Path:
 
 
 def captions(item: dict) -> dict:
+    from .links import CTA
     emo = item["emotion"]
     hook = _clean(item.get("hook", ""))
     line = _clean(item.get("line", "")).strip("“”\"")
     do = _clean(item.get("do", ""))
     tag = re.sub(r"[^a-z]", "", emo.lower())
-    tiktok = (f"{hook.rstrip('—-').strip()} "
-              f"#{tag} #feelings #emotionalintelligence #overthinking #selfawareness")
+    tags = f"#{tag} #feelings #emotionalintelligence #overthinking #selfawareness"
+    tiktok = f"{hook.rstrip('—-').strip()} {CTA['tiktok']} {tags}"
     yt_title = f"{emo}: what it's actually asking for #shorts"[:100]
     yt_desc = (f"{hook} {_clean(item.get('turn',''))} {_clean(item.get('name',''))}\n\n"
-               f"Try this: {do}\n\nMnema — a voice journal that names what you feel. Search Mnema on the App Store.")
+               f"Try this: {do}\n\nMnema — a voice journal that talks back. {CTA['youtube']}")
     insta = (f"{hook}\n\n“{line}”\n\nTry this: {do}\n\n"
-             f"Mnema turns two minutes of talking into a journal entry and tags what you felt. Link in bio.\n\n"
+             f"Talk for two minutes and Mnema writes the journal entry for you. {CTA['instagram']}\n\n"
              f"#{tag} #emotions #selfawareness #journaling #emotionalintelligence #feelings")
-    x = f"{hook} “{line}” Try this: {do}"
-    if len(x) > 270:
-        x = f"{hook} “{line}”"[:270]
+    x = f"{hook} “{line}”"[:200] + f" {CTA['x']}"
     return {"tiktok": tiktok, "youtube_title": yt_title, "youtube_desc": yt_desc,
-            "instagram": insta, "x": x}
+            "instagram": insta, "x": x,
+            "pinned": "If this one landed: Mnema is the voice journal I'm building. You talk, it writes the entry "
+                      "and names what you felt. Search “Mnema” on the App Store. It's free to try."}

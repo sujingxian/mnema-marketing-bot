@@ -287,7 +287,6 @@ def build(rec: dict, out: Path, music: Path) -> Path:
             break
     head = gfx.text_block(["I told my AI journal:"], play(70, "SemiBold"), PAPER, width=W)
     tag = gfx.text_block(["REAL REPLY · UNEDITED"], mono(28), DIM, width=W)
-    foot = gfx.text_block(["Mnema · voice journal · App Store"], mono(28), GREEN, width=W)
     icon = gfx.icon(60)
     n_words = len(reply.split())
 
@@ -295,58 +294,58 @@ def build(rec: dict, out: Path, music: Path) -> Path:
     me_xy = (RIGHT - me.width, y0 + head_h)
     ai_y = me_xy[1] + me.height + 50 + 70
     ai_xy = (LEFT + 80, ai_y)
-    dots_t0, reply_t0 = 1.2, 2.0
-    wps = 3.3
-    reply_end = reply_t0 + n_words / wps
-    duration = reply_end + 2.6
+    # 2026-11-23: viewers saw "Maybe" in an empty box for two seconds and scrolled. The reply now
+    # appears line by line within ~0.6 s of the start, the box grows with the text, and the video
+    # ends on the call to action.
+    reply_t0 = 0.5
+    line_step = 0.12
+    read = max(2.6, n_words / 3.2)
+    cta_t0 = reply_t0 + read + 0.8
+    duration = cta_t0 + gfx.CTA_DUR
 
     base = Image.new("RGBA", (W, H), INK + (255,))
     base.alpha_composite(tag, (0, SAFE_TOP - 70))
     base.alpha_composite(head, (0, y0))
     base.alpha_composite(me, me_xy)               # the confession is on the very first frame (cover)
-
+    words_per_line = [len(l.split()) for l in ai_l]
     cache: dict[int, Image.Image] = {}
+    cta_bg = Image.new("RGBA", (W, H), INK + (255,))
 
     def frame(t):
+        if t >= cta_t0:
+            img = cta_bg.copy()
+            gfx.cta_card(img, t, cta_t0, lead="Want one that talks back?")
+            return img
         img = base.copy()
-        if t >= dots_t0:
-            img.alpha_composite(icon, (LEFT, ai_y + 6))
-        if dots_t0 <= t < reply_t0:
-            dots = Image.new("RGBA", (150, 84), (0, 0, 0, 0))
-            dd = ImageDraw.Draw(dots)
-            dd.rounded_rectangle((0, 0, 149, 83), 34, fill=AI_BG)
-            for i in range(3):
-                k = 0.5 + 0.5 * __import__("math").sin(t * 9 - i * 0.9)
-                c = int(150 - 60 * k)
-                dd.ellipse((35 + i * 36 - 9, 42 - 9 - 5 * k, 35 + i * 36 + 9, 42 + 9 - 5 * k), fill=(c, c, c))
-            img.alpha_composite(dots, ai_xy)
         if t >= reply_t0:
-            k = min(n_words, int((t - reply_t0) * wps) + 1)
+            img.alpha_composite(icon, (LEFT, ai_y + 6))
+            n_lines = min(len(ai_l), int((t - reply_t0) / line_step) + 1)
+            k = sum(words_per_line[:n_lines])
             if k not in cache:
-                cache[k] = _bubble(ai_l, f, AI_BG, AI_TX, upto_words=k)
+                part = _bubble(ai_l[:n_lines], f, AI_BG, AI_TX)
+                cache[k] = part
             img.alpha_composite(cache[k], ai_xy)
-        if t >= reply_end + 0.3:
-            a = min(1.0, (t - reply_end - 0.3) / 0.4)
-            gfx.paste_fade(img, foot, (0, SAFE_BOTTOM - 40), a)
         return img
 
     return gfx.encode(frame, duration, out, music, crf=18)
 
 
 def captions(rec: dict) -> dict:
+    from .links import CTA
     say = rec["say"]
     short = say if len(say) <= 70 else say[:67].rsplit(" ", 1)[0] + "…"
     tags = "#journaling #aijournal #overthinking #selfawareness #feelings"
     return {
-        "tiktok": f"I typed this into the journal app I'm building. The reply is unedited. What would you have said? {tags}",
+        "tiktok": f"I typed this into the journal app I'm building. The reply is unedited. What would you have said? "
+                  f"{CTA['tiktok']} {tags}",
         "youtube_title": f"I told my AI journal: “{short}” #shorts"[:100],
         "youtube_desc": (f"Me: {say}\n\nMnema (real reply, unedited): {rec['reply']}\n\n"
-                         "Mnema is a voice journal: talk for two minutes and it writes the entry. On the App Store."),
+                         f"Mnema is a voice journal: talk for two minutes and it writes the entry. {CTA['youtube']}"),
         "instagram": (f"I told my AI journal: “{say}”\n\nThis is the reply, unedited. "
-                      f"It's not allowed to say “that sounds hard”.\n\nMnema is on the App Store — link in bio.\n\n{tags}"),
-        "x": f"Me: “{short}”\nMy journal app, unedited: “{rec['reply'][:150]}”",
+                      f"It's not allowed to say “that sounds hard”.\n\n{CTA['instagram']}\n\n{tags}"),
+        "x": f"Me: “{short}”\nMy journal app, unedited: “{rec['reply'][:120]}” {CTA['x']}",
         "pinned": ("This is Mnema, the voice journal I'm building. You talk for a couple of minutes, it writes the entry, "
-                   "and it remembers what you told it last week. First 7 days free on the App Store, link in bio."),
+                   "and it remembers what you told it last week. Search “Mnema” on the App Store. It's free to try."),
     }
 
 

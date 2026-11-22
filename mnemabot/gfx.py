@@ -220,3 +220,30 @@ def encode(frame_fn, duration: float, out: Path, audio: Path, crf=20, audio_raw=
     if p.wait() != 0:
         raise RuntimeError("ffmpeg failed")
     return out
+
+
+# ---------- call to action (2026-11-23: every post ends on how to get the app) ----------
+CTA_DUR = 2.4
+CTA_LINE = "SEARCH “MNEMA” ON THE APP STORE"
+
+
+def cta_card(img, t, t0, lead: str = "Talk it out tonight."):
+    """Fast dark CTA: everything is on screen within 0.35 s, so even a quick scroll reads it.
+
+    Platform-neutral on purpose: the same file goes to TikTok, where a personal account under
+    1,000 followers has no tappable bio link, so the video says "search", and the captions
+    carry the per-platform "link in bio" / URL.
+    """
+    paper = (245, 242, 236)
+    green = (140, 176, 150)
+    a = ease(prog(t, t0, 0.25))
+    paste_fade(img, text_block([lead], play(64, "SemiBold"), paper), (0, 560), a, dy=(1 - a) * 16)
+    paste_fade(img, icon(150), ((W - 150) / 2, 720), a)
+    paste_fade(img, text_block(["Mnema"], play(76), paper), (0, 890), a)
+    paste_fade(img, text_block(["The journal that talks back."], inter(36), (176, 170, 160)), (0, 1000), a)
+    b = ease(prog(t, t0 + 0.1, 0.25))
+    pill = Image.new("RGBA", (820, 104), (0, 0, 0, 0))
+    ImageDraw.Draw(pill).rounded_rectangle((0, 0, 819, 103), 52, fill=green)
+    lbl = text_block([CTA_LINE], mono(32), (16, 18, 16), width=820)
+    pill.alpha_composite(lbl, (0, 30))
+    paste_fade(img, pill, ((W - 820) / 2, 1110), b, dy=(1 - b) * 12)
