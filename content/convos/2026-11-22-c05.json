@@ -1,0 +1,27 @@
+{
+ "id": "c05",
+ "say": "I rewrote one text to my ex six times and then didn't send it.",
+ "reply": "Maybe each version was trying to say something you couldn’t quite risk sending.",
+ "fetched_at": "2026-11-22T00:21:15.272131+00:00",
+ "endpoint": "https://backend-lively-butterfly-3415.fly.dev/api/checkin/message",
+ "session_id": "441470a1-f5bc-4505-b12f-eec15f596bc8",
+ "attempts": [
+  {
+   "reply": "You were trying to get every word right, but couldn’t find a version that felt safe to send.",
+   "session_id": "8aa44def-559d-4778-a796-5aea5cbb4a1d",
+   "rejected": "no judge; opens by handing their story back ('You …')",
+   "judge": null,
+   "score": 0.9,
+   "judge_error": "openai/gpt-4.1-mini: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err='' || openai/gpt-4.1: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err=''"
+  },
+  {
+   "reply": "Maybe each version was trying to say something you couldn’t quite risk sending.",
+   "session_id": "441470a1-f5bc-4505-b12f-eec15f596bc8",
+   "rejected": null,
+   "judge": null,
+   "score": 1.18,
+   "judge_error": "openai/gpt-4.1-mini: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err='' || openai/gpt-4.1: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err=''"
+  }
+ ],
+ "note": "reply is verbatim backend output; first line written by the account owner; best of the attempts below (judge score + word overlap), none edited"
+}
