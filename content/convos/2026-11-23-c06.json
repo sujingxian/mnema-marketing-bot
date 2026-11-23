@@ -1,0 +1,19 @@
+{
+ "id": "c06",
+ "say": "Everyone in the group chat is getting engaged and I'm just liking the photos.",
+ "reply": "Maybe you’re happy for them, but the photos are making you notice where you are in your own life.",
+ "fetched_at": "2026-11-23T00:53:38.280534+00:00",
+ "endpoint": "https://backend-lively-butterfly-3415.fly.dev/api/checkin/message",
+ "session_id": "2c6c10a2-547e-45e0-b9d6-6c869c138cdb",
+ "attempts": [
+  {
+   "reply": "Maybe you’re happy for them, but the photos are making you notice where you are in your own life.",
+   "session_id": "2c6c10a2-547e-45e0-b9d6-6c869c138cdb",
+   "rejected": null,
+   "judge": null,
+   "score": 1.1,
+   "judge_error": "openai/gpt-4.1-mini: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err='' || openai/gpt-4.1: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err=''"
+  }
+ ],
+ "note": "reply is verbatim backend output; first line written by the account owner; best of the attempts below (judge score + word overlap), none edited"
+}
