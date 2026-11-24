@@ -1,0 +1,19 @@
+{
+ "id": "c07",
+ "say": "I did nothing all Sunday and now I feel guilty about resting.",
+ "reply": "Maybe you needed the rest, but part of you still thinks you had to earn it.",
+ "fetched_at": "2026-11-24T04:49:00.522325+00:00",
+ "endpoint": "https://backend-lively-butterfly-3415.fly.dev/api/checkin/message",
+ "session_id": "f435f328-b210-4a90-8c49-a5c2349e69ec",
+ "attempts": [
+  {
+   "reply": "Maybe you needed the rest, but part of you still thinks you had to earn it.",
+   "session_id": "f435f328-b210-4a90-8c49-a5c2349e69ec",
+   "rejected": null,
+   "judge": null,
+   "score": 1.2,
+   "judge_error": "openai/gpt-4.1-mini: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err='' || openai/gpt-4.1: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err=''"
+  }
+ ],
+ "note": "reply is verbatim backend output; first line written by the account owner; best of the attempts below (judge score + word overlap), none edited"
+}
