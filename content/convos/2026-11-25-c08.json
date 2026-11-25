@@ -1,0 +1,51 @@
+{
+ "id": "c08",
+ "say": "My friend forgot my birthday and I told her it's fine. It's not fine.",
+ "reply": "Maybe you didn’t want to make her feel bad, but you still wanted her to remember without being reminded.",
+ "fetched_at": "2026-11-25T03:33:51.417772+00:00",
+ "endpoint": "https://backend-lively-butterfly-3415.fly.dev/api/checkin/message",
+ "session_id": "b6645689-52f5-4928-b07f-11c7b5961958",
+ "attempts": [
+  {
+   "reply": "You probably said it was fine so you wouldn’t make her feel bad, but you wanted her to remember on her own.",
+   "session_id": "ff194254-1197-424e-a597-b7cd8f462163",
+   "rejected": "no judge; opens by handing their story back ('You …')",
+   "judge": null,
+   "score": 0.8,
+   "judge_error": "openai/gpt-4.1-mini: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err='' || openai/gpt-4.1: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err=''"
+  },
+  {
+   "reply": "You said it was fine to spare her, but you wanted her to remember.",
+   "session_id": "4b8a4e4a-32c1-4a68-8af4-79108a9b991b",
+   "rejected": "no judge; opens by handing their story back ('You …')",
+   "judge": null,
+   "score": 0.657,
+   "judge_error": "openai/gpt-4.1-mini: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err='' || openai/gpt-4.1: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err=''"
+  },
+  {
+   "reply": "You didn’t want to make her feel bad, but you were hoping she’d remember without being told.",
+   "session_id": "a9068151-89d2-4259-9b9b-f9eec20bc6da",
+   "rejected": "no judge; opens by handing their story back ('You …')",
+   "judge": null,
+   "score": 0.8,
+   "judge_error": "openai/gpt-4.1-mini: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err='' || openai/gpt-4.1: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err=''"
+  },
+  {
+   "reply": "You probably didn’t want to make her feel bad, but now you’re left carrying the hurt alone.",
+   "session_id": "a36db0c2-ba4d-4a86-a770-72736fdc293d",
+   "rejected": "no judge; opens by handing their story back ('You …')",
+   "judge": null,
+   "score": 0.889,
+   "judge_error": "openai/gpt-4.1-mini: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err='' || openai/gpt-4.1: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err=''"
+  },
+  {
+   "reply": "Maybe you didn’t want to make her feel bad, but you still wanted her to remember without being reminded.",
+   "session_id": "b6645689-52f5-4928-b07f-11c7b5961958",
+   "rejected": null,
+   "judge": null,
+   "score": 1.1,
+   "judge_error": "openai/gpt-4.1-mini: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err='' || openai/gpt-4.1: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err=''"
+  }
+ ],
+ "note": "reply is verbatim backend output; first line written by the account owner; best of the attempts below (judge score + word overlap), none edited"
+}
