@@ -1,0 +1,35 @@
+{
+ "id": "c09",
+ "say": "I keep refreshing my email waiting for the results and I can't focus on anything else.",
+ "reply": "Every refresh feels like it might finally end the not-knowing, so your mind keeps going back to it.",
+ "fetched_at": "2026-11-26T02:52:09.957681+00:00",
+ "endpoint": "https://backend-lively-butterfly-3415.fly.dev/api/checkin/message",
+ "session_id": "154f321c-f417-47c8-b5df-7cba4e3ecbd3",
+ "attempts": [
+  {
+   "reply": "The waiting has taken over your attention; you can’t settle until you know.",
+   "session_id": "df16fe59-7574-4286-b11f-7cef7be2a454",
+   "rejected": null,
+   "judge": null,
+   "score": 0.758,
+   "judge_error": "openai/gpt-4.1-mini: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err='' || openai/gpt-4.1: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err=''"
+  },
+  {
+   "reply": "That uncertainty is taking up all the space right now; everything else can wait for the email.",
+   "session_id": "c1d5d741-a356-4e09-82a9-7a0c16d030a3",
+   "rejected": null,
+   "judge": null,
+   "score": 0.778,
+   "judge_error": "openai/gpt-4.1-mini: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err='' || openai/gpt-4.1: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err=''"
+  },
+  {
+   "reply": "Every refresh feels like it might finally end the not-knowing, so your mind keeps going back to it.",
+   "session_id": "154f321c-f417-47c8-b5df-7cba4e3ecbd3",
+   "rejected": null,
+   "judge": null,
+   "score": 1.0,
+   "judge_error": "openai/gpt-4.1-mini: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err='' || openai/gpt-4.1: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err=''"
+  }
+ ],
+ "note": "reply is verbatim backend output; first line written by the account owner; best of the attempts below (judge score + word overlap), none edited"
+}
