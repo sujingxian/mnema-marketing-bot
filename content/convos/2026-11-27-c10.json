@@ -1,0 +1,19 @@
+{
+ "id": "c10",
+ "say": "I laughed at a joke in a meeting that I didn't think was funny and now I feel fake.",
+ "reply": "Maybe you laughed to keep the moment easy, and now it feels like you betrayed what you actually thought.",
+ "fetched_at": "2026-11-27T02:52:09.474915+00:00",
+ "endpoint": "https://backend-lively-butterfly-3415.fly.dev/api/checkin/message",
+ "session_id": "48d5ed75-239e-4ad5-9dc5-a46bc8d4b7e3",
+ "attempts": [
+  {
+   "reply": "Maybe you laughed to keep the moment easy, and now it feels like you betrayed what you actually thought.",
+   "session_id": "48d5ed75-239e-4ad5-9dc5-a46bc8d4b7e3",
+   "rejected": null,
+   "judge": null,
+   "score": 1.089,
+   "judge_error": "openai/gpt-4.1-mini: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err='' || openai/gpt-4.1: HTTP 200 JSONDecodeError('Expecting value: line 1 column 1 (char 0)') body='OK\\n' err=''"
+  }
+ ],
+ "note": "reply is verbatim backend output; first line written by the account owner; best of the attempts below (judge score + word overlap), none edited"
+}
