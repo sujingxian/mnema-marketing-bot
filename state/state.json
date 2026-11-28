@@ -1,5 +1,5 @@
 {
- "next_index": 27,
+ "next_index": 28,
  "history": [
   {
    "index": 0,
@@ -1602,6 +1602,70 @@
      "slot": 1,
      "ok": true,
      "post_id": "6b08f064062ed764a8d96953"
+    }
+   ]
+  },
+  {
+   "index": 27,
+   "slug": "emotion-09-worrying-about-the-future",
+   "post_day": "2026-11-28",
+   "file": "2026-11-28-emotion-09-worrying-about-the-future-f2.mp4",
+   "due": "2026-11-28T13:00:00+00:00",
+   "scheduled_at": "2026-11-28T02:41:47.682893+00:00",
+   "videos": [
+    {
+     "format": "F2",
+     "slot": 0,
+     "file": "2026-11-28-emotion-09-worrying-about-the-future-f2.mp4",
+     "due": "2026-11-28T13:00:00+00:00",
+     "slug": "emotion-09-worrying-about-the-future",
+     "url": "https://raw.githubusercontent.com/sujingxian/mnema-marketing-bot/main/videos/2026-11-28-emotion-09-worrying-about-the-future-f2.mp4"
+    },
+    {
+     "format": "convo",
+     "slot": 1,
+     "file": "2026-11-28-convo-c11.mp4",
+     "due": "2026-11-28T18:00:00+00:00",
+     "slug": "convo-c11",
+     "record": "content/convos/2026-11-28-c11.json",
+     "url": "https://raw.githubusercontent.com/sujingxian/mnema-marketing-bot/main/videos/2026-11-28-convo-c11.mp4"
+    }
+   ],
+   "results": [
+    {
+     "service": "youtube",
+     "format": "F2",
+     "slot": 0,
+     "ok": true,
+     "post_id": "6b0a3f832a2e4f66caf2aa27"
+    },
+    {
+     "service": "youtube",
+     "format": "convo",
+     "slot": 1,
+     "ok": true,
+     "post_id": "6b0a3f83eab081a3f518f412"
+    },
+    {
+     "service": "tiktok",
+     "format": "F2",
+     "slot": 0,
+     "ok": true,
+     "post_id": "6b0a3f83eab081a3f518f44b"
+    },
+    {
+     "service": "tiktok",
+     "format": "convo",
+     "slot": 1,
+     "ok": true,
+     "post_id": "6b0a3f8470e80ae8f1c77265"
+    },
+    {
+     "service": "instagram",
+     "format": "convo",
+     "slot": 1,
+     "ok": true,
+     "post_id": "6b0a3f84eab081a3f518f475"
     }
    ]
   }
